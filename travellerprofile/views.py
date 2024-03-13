@@ -70,18 +70,9 @@ def create_traveller(request):
     if request.method == "POST":
         form = TravellerForm(request.POST, request.FILES)
         if form.is_valid():
-            firstname = form.cleaned_data.get("firstname")
-            lastname = form.cleaned_data.get("lastname")
-            bio = form.cleaned_data.get("bio")
-            img = form.cleaned_data.get("profile_photo")
-            obj = Traveller.objects.create(
-                                 user = request.user,
-                                 firstname = firstname, 
-                                 lastname = lastname, 
-                                 bio = bio, 
-                                 profile_photo = img
-                                 )
-            obj.save()
+            traveller = form.save(commit=False)
+            traveller.user = request.user
+            traveller.save()
             return HttpResponseRedirect(reverse(view_profile))
     else:
         form = TravellerForm()
@@ -90,3 +81,25 @@ def create_traveller(request):
         request,
         "travellerprofile/create_traveller.html",
         context,)
+
+def edit_traveller(request):
+    """
+    Display form to allow traveller to edit their profile
+    """
+    traveller = get_object_or_404(Traveller, user=request.user)
+    
+    if request.method == "POST":
+        form = TravellerForm(request.POST, request.FILES, instance=traveller)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse(view_profile))
+    else:
+        form = TravellerForm(instance=traveller)
+    return render(
+        request,
+        "travellerprofile/edit_traveller.html",
+        {
+            "traveller": traveller,
+            "form": form,
+        },
+    )
