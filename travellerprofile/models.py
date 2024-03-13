@@ -14,7 +14,7 @@ class Traveller(models.Model):
     firstname = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
     bio = models.TextField(max_length=500)
-    profile_photo = models.ImageField(upload_to='profileImages/', blank=True)
+    profile_photo = models.ImageField(upload_to='profileImages/', blank=True, default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 

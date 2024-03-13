@@ -9,7 +9,12 @@
         <div class="col-12 col-lg-4">
             <h3>{{traveller.firstname}} {{traveller.lastname}}</h3>
             <div class="profile-image-div">
-                {% cloudinary traveller.profile_photo.name width=250 height=250 %}
+                {% if traveller.profile_photo.url == "" %}
+                    <img class="profile-image" src="{% static 'images/nobody.jpg' %}"
+                        alt="placeholder image">
+                {% else %}
+                    {% cloudinary traveller.profile_photo.name width=250 height=250 %}
+                {% endif %}
             </div>
             <p>{{ traveller.bio }}</p>
         </div>
