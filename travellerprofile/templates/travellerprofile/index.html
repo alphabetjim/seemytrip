@@ -2,7 +2,9 @@
 {% load static %}
 
 {% block content %}
-
+    {% if user.is_authenticated %}
+    Welcome {{ user }}!
+    {% endif %}
     Boo!
 
 {% endblock content %}

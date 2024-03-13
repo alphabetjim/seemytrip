@@ -16,10 +16,10 @@ def homepage(request):
         {},
     )
 
-class TravellerList(generic.ListView):
+def TravellerList(request):
     """
     Returns all Traveller profiles in :model:`travellerprofile:Traveller`
-    and displays them in a page of six posts.
+    and displays them in a page.
     **Context**
 
     ``queryset``
@@ -30,8 +30,14 @@ class TravellerList(generic.ListView):
     :template:`travellerprofile/index.html`
     """
     queryset = Traveller.objects.all()
-    print(queryset.first())
     template_name = "travellerprofile/travellerlist.html"
+    return render(
+        request,
+        template_name,
+        {
+            'queryset': queryset,
+        },
+    )
 
 def view_profile(request):
     """

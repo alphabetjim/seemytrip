@@ -1,8 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cloudinary %}
 
 {% block content %}
 
-
+{% for traveller in queryset %}
+    <section class="traveller-section row">
+        <div class="col-12 col-lg-4">
+            <h3>{{traveller.firstname}} {{traveller.lastname}}</h3>
+            <div class="profile-image-div">
+                {% cloudinary traveller.profile_photo.name width=250 height=250 %}
+            </div>
+            <p>{{ traveller.bio }}</p>
+        </div>
+    </section>
+{% endfor %}
 
 {% endblock content %}
