@@ -3,6 +3,7 @@
 {% url 'home' as home_url %}
 {% url 'view_traveller' as view_traveller_url %}
 {% url 'travellerlist' as travellerlist_url %}
+{% url 'create_traveller' as create_traveller_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -53,6 +54,9 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == view_traveller_url %}active" aria-current="page{% endif %}" href="{% url 'view_traveller' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == create_traveller_url %}active" aria-current="page{% endif %}" href="{% url 'create_traveller' %}">Start Your Adventure</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}" href="{% url 'account_logout' %}">Logout</a>
