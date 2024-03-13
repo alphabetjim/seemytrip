@@ -90,3 +90,19 @@ def create_traveller(request):
         request,
         "travellerprofile/create_traveller.html",
         context,)
+
+def edit_traveller(request):
+    """
+    Display form to allow traveller to edit their profile
+    """
+    traveller = get_object_or_404(Traveller, user=request.user)
+    form = TravellerForm(instance=traveller)
+
+    return render(
+        request,
+        "travellerprofile/edit_traveller.html",
+        {
+            "traveller": traveller,
+            "form": form,
+        },
+    )

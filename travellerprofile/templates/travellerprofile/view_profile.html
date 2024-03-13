@@ -2,6 +2,8 @@
 {% load static %}
 {% load cloudinary %}
 
+{% url 'edit_traveller' as edit_traveller_url %}
+
 {% block content %}
 <p>Logged in as {{ user }}</p>
 <h1>Traveller {{ traveller.firstname }} {{ traveller.lastname}}</h1>
@@ -9,5 +11,5 @@
 <p>{{traveller.bio}}</p>
 <h2>Photo</h2>
 {% cloudinary traveller.profile_photo.name width=250 height=250 %}
-
+<a href="{% url 'edit_traveller' %}"><strong>Edit Profile</strong></a>
 {% endblock content %}
