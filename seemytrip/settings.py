@@ -105,6 +105,11 @@ DATABASES = {
         dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.gitpod.io", "https://*.herokuapp.com/"
+]
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -147,3 +152,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# To make Cloudinary image fields work
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
