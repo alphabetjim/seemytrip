@@ -3,7 +3,7 @@
 {% url 'home' as home_url %}
 {% url 'view_traveller' as view_traveller_url %}
 {% url 'travellerlist' as travellerlist_url %}
-{% url 'create_traveller' as create_traveller_url %}
+{% url 'triplist' as triplist_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -51,12 +51,13 @@
                         <a class="nav-link {% if request.path == 'travellerlist_url' %}active" aria-current="page{% endif %}"
                             href="{% url 'travellerlist' %}">Travellers</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == 'triplist_url' %}active" aria-current="page{% endif %}"
+                            href="{% url 'triplist' %}">Trips</a>
+                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == view_traveller_url %}active" aria-current="page{% endif %}" href="{% url 'view_traveller' %}">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == create_traveller_url %}active" aria-current="page{% endif %}" href="{% url 'create_traveller' %}">Start Your Adventure</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}" href="{% url 'account_logout' %}">Logout</a>
@@ -118,7 +119,7 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
     </script>
     
-    {% block extras %}
+    {% block scripts %}
     {% endblock %}
 </body>
 

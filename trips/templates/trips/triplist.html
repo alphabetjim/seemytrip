@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cloudinary %}
+
+{% block content %}
+
+{% for trip in queryset %}
+    <section class="traveller-section row">
+        <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
+            <h3>{{ trip.name }}</h3>
+        </a>
+        <div class="col-12 col-lg-6">
+            <h4>{{ trip.planner.firstname }} {{ trip.planner.lastname }}</h4>
+            <div class="trip">
+                {% if trip.trip_photo.url == "" %}
+                    <img class="trip-image" src="{% static 'images/nobody.jpg' %}"
+                        alt="placeholder image">
+                {% else %}
+                    {% cloudinary trip.trip_photo.name width=250 height=250 %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            {% if trip.get_accomm_type_display|length > 0 %}
+                <br>
+                <p>Staying in a {{ trip.get_accomm_type_display }}</p>
+            {% endif %}
+            {% if trip.get_region_display|length > 0 %}
+                <br>
+                <p>Region: {{ trip.get_region_display }}</p>
+            {% endif %}
+            {% if trip.interests|length > 0 %}
+                <br>
+                <p>This trip involves {{ trip.interests }}</p>
+            {% endif %}
+            {% if trip.followers|length == 0 %}
+                <p><strong>Be the first to follow this trip!</strong></p>    
+            {% else %}
+                <p><strong>{{ trip.followers.count }} Following: </strong>{{ trip.followers }}</p>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <form action="{% url 'follow_trip' trip.pk %}" method="POST">
+                    {% csrf_token %}
+                    <!-- TODO: need to implement something to reflect whether user is attending -->
+                    <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">Follow</button>
+                    <!-- May need to be in the form of a line of text under the button including *You* if attending -->
+                </form>
+            {% endif %}
+        </div>
+    </section>
+{% endfor %}
+
+{% endblock content %}
+
+{% block scripts %}
+<!-- <script src="{% static 'js/follow.js' %}"></script> -->
+{% endblock %}
