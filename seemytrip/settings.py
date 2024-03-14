@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'cloudinary',
     'travellerprofile',
+    'trips',
 ]
 
 SITE_ID = 1
