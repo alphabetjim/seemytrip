@@ -103,3 +103,12 @@ def edit_traveller(request):
             "form": form,
         },
     )
+
+def delete_traveller(request):
+    """
+    View to allow traveller profile deletion
+    """
+    traveller = get_object_or_404(Traveller, user=request.user)
+    traveller.delete()
+
+    return HttpResponseRedirect(reverse(homepage))
