@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
+from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Trip
 
 # Create your views here.
@@ -29,3 +31,18 @@ def trip_detail(request, pk):
             'trip': trip,
         }
     )
+
+def follow_trip(request, pk):
+    """
+    Toggle whether or not a user is following a trip
+    """
+    trip = get_object_or_404(Trip, pk=pk)
+
+    if trip.followers.filter(username=request.user.username).exists():
+        trip.followers.remove(request.user)
+        messages.add_message(request, messages.SUCCESS, 'You are no longer following this trip!')
+    else:
+        trip.followers.add(request.user)
+        messages.add_message(request, messages.SUCCESS, 'You are now following this trip!')
+
+    return(HttpResponseRedirect('../../trips'))

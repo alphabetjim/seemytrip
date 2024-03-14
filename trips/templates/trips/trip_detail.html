@@ -34,7 +34,7 @@
         {% if trip.followers|length == 0 %}
             <p><strong>Be the first to follow this trip!</strong></p>    
         {% else %}
-            <p><strong>Following: </strong>{{ trip.followers }}</p>
+            <p><strong>{{ trip.followers.count }} Following: </strong>{{ trip.followers }}</p>
         {% endif %}
     </div>
 </section>
