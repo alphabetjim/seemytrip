@@ -23,12 +23,17 @@ def trip_detail(request, pk):
     """
     queryset = Trip.objects.all()
     trip = get_object_or_404(queryset, pk=pk)
+    if trip.followers.filter(username=request.user.username).exists():
+        user_following = True
+    else:
+        user_following = False
     
     return render(
         request,
         'trips/trip_detail.html',
         {
             'trip': trip,
+            'user_following': user_following,
         }
     )
 
@@ -45,4 +50,4 @@ def follow_trip(request, pk):
         trip.followers.add(request.user)
         messages.add_message(request, messages.SUCCESS, 'You are now following this trip!')
 
-    return(HttpResponseRedirect('../../trips'))
+    return(HttpResponseRedirect(f'../../trips/{pk}'))

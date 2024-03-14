@@ -31,11 +31,26 @@
         <br>
         <p>Setting off on {{ trip.startDate }} and returning {{ trip.endDate }}</p>
         <p>{{ trip.itinerary }}</p>
-        {% if trip.followers|length == 0 %}
+        {% if trip.followers.count == 0 %}
             <p><strong>Be the first to follow this trip!</strong></p>    
         {% else %}
-            <p><strong>{{ trip.followers.count }} Following: </strong>{{ trip.followers }}</p>
+            <p><strong>{{ trip.followers.count }} Following: </strong>{% for follower in trip.followers.all %}
+                {{ follower.username }} 
+            {% endfor %}
+            </p>
         {% endif %}
+        <form action="{% url 'follow_trip' trip.pk %}" method="POST">
+            {% csrf_token %}
+            <!-- TODO: need to implement something to reflect whether user is attending -->
+            <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
+                {% if user_following %}
+                Following
+                {% else %}
+                Follow
+                {% endif %}
+            </button>
+            <!-- May need to be in the form of a line of text under the button including *You* if attending -->
+        </form>
     </div>
 </section>
 

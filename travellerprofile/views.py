@@ -53,15 +53,18 @@ def view_profile(request):
     :template: ``travellerprofile/view_traveller.html``
     """
     queryset = Traveller.objects.all()
-    traveller = get_object_or_404(queryset, user=request.user)
-
-    return render(
-        request,
-        "travellerprofile/view_profile.html",
-        {
-            "traveller": traveller,
-        },
-    )
+    try:
+        traveller = get_object_or_404(queryset, user=request.user)
+    except:
+        return HttpResponseRedirect('../create_traveller')
+    else:    
+        return render(
+            request,
+            "travellerprofile/view_profile.html",
+            {
+                "traveller": traveller,
+            },
+        )
 
 def create_traveller(request):
     """
