@@ -7,6 +7,7 @@
 {% for trip in queryset %}
     <section class="traveller-section row">
         <div class="col-12 col-lg-4">
+            {% with trip.pk|add:-1 as currentIndex %}
             <h3>{{ trip.name }}</h3>
             <h4>{{ trip.planner.firstname }} {{ trip.planner.lastname }}</h4>
             <div class="trip">
@@ -18,7 +19,7 @@
                 {% endif %}
             </div>
             <br>
-                <p>{{ trip.accomm_type }}</p>
+                <p>{{ accomm_types.0 }}</p>
             <br>
             {% if trip.accomm_type|length > 0 %}
                 <br>
@@ -26,6 +27,7 @@
                 <br>
             {% endif %}
             <p>{{ trip.itinerary }}</p>
+            {% endwith %}
         </div>
     </section>
 {% endfor %}
