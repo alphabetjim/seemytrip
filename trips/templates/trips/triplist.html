@@ -6,8 +6,10 @@
 
 {% for trip in queryset %}
     <section class="traveller-section row">
-        <div class="col-12 col-lg-4">
+        <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
             <h3>{{ trip.name }}</h3>
+        </a>
+        <div class="col-12 col-lg-6">
             <h4>{{ trip.planner.firstname }} {{ trip.planner.lastname }}</h4>
             <div class="trip">
                 {% if trip.trip_photo.url == "" %}
@@ -17,6 +19,8 @@
                     {% cloudinary trip.trip_photo.name width=250 height=250 %}
                 {% endif %}
             </div>
+        </div>
+        <div class="col-12 col-lg-6">
             {% if trip.get_accomm_type_display|length > 0 %}
                 <br>
                 <p>Staying in a {{ trip.get_accomm_type_display }}</p>
@@ -29,9 +33,6 @@
                 <br>
                 <p>This trip involves {{ trip.interests }}</p>
             {% endif %}
-            <br>
-            <p>Setting off on {{ trip.startDate }} and returning {{ trip.endDate }}</p>
-            <p>{{ trip.itinerary }}</p>
             {% if trip.followers|length == 0 %}
                 <p><strong>Be the first to follow this trip!</strong></p>    
             {% else %}

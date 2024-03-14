@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cloudinary %}
+
+{% block content %}
+
+<section class="traveller-section row">
+    <div class="col-12 col-lg-4">
+        <h3>{{ trip.name }}</h3>
+        <h4>{{ trip.planner.firstname }} {{ trip.planner.lastname }}</h4>
+        <div class="trip">
+            {% if trip.trip_photo.url == "" %}
+                <img class="trip-image" src="{% static 'images/nobody.jpg' %}"
+                    alt="placeholder image">
+            {% else %}
+                {% cloudinary trip.trip_photo.name width=250 height=250 %}
+            {% endif %}
+        </div>
+        {% if trip.get_accomm_type_display|length > 0 %}
+            <br>
+            <p>Staying in a {{ trip.get_accomm_type_display }}</p>
+        {% endif %}
+        {% if trip.get_region_display|length > 0 %}
+            <br>
+            <p>Region: {{ trip.get_region_display }}</p>
+        {% endif %}
+        {% if trip.interests|length > 0 %}
+            <br>
+            <p>This trip involves {{ trip.interests }}</p>
+        {% endif %}
+        <br>
+        <p>Setting off on {{ trip.startDate }} and returning {{ trip.endDate }}</p>
+        <p>{{ trip.itinerary }}</p>
+        {% if trip.followers|length == 0 %}
+            <p><strong>Be the first to follow this trip!</strong></p>    
+        {% else %}
+            <p><strong>Following: </strong>{{ trip.followers }}</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock content %}
