@@ -7,7 +7,6 @@
 {% for trip in queryset %}
     <section class="traveller-section row">
         <div class="col-12 col-lg-4">
-            {% with trip.pk|add:-1 as currentIndex %}
             <h3>{{ trip.name }}</h3>
             <h4>{{ trip.planner.firstname }} {{ trip.planner.lastname }}</h4>
             <div class="trip">
@@ -18,16 +17,26 @@
                     {% cloudinary trip.trip_photo.name width=250 height=250 %}
                 {% endif %}
             </div>
-            <br>
-                <p>{{ accomm_types.0 }}</p>
-            <br>
-            {% if trip.accomm_type|length > 0 %}
+            {% if trip.get_accomm_type_display|length > 0 %}
                 <br>
-                <p>{{ trip.accomm_type }}</p>
-                <br>
+                <p>Staying in a {{ trip.get_accomm_type_display }}</p>
             {% endif %}
+            {% if trip.get_region_display|length > 0 %}
+                <br>
+                <p>Region: {{ trip.get_region_display }}</p>
+            {% endif %}
+            {% if trip.interests|length > 0 %}
+                <br>
+                <p>This trip involves {{ trip.interests }}</p>
+            {% endif %}
+            <br>
+            <p>Setting off on {{ trip.startDate }} and returning {{ trip.endDate }}</p>
             <p>{{ trip.itinerary }}</p>
-            {% endwith %}
+            {% if trip.followers|length == 0 %}
+                <p><strong>Be the first to follow this trip!</strong></p>    
+            {% else %}
+                <p><strong>Following: </strong>{{ trip.followers }}</p>
+            {% endif %}
         </div>
     </section>
 {% endfor %}
