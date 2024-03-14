@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import Traveller
 from .forms import TravellerForm
@@ -92,7 +93,11 @@ def edit_traveller(request):
         form = TravellerForm(request.POST, request.FILES, instance=traveller)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS, 'Profile Updated!')
             return HttpResponseRedirect(reverse(view_profile))
+        else:
+            messages.add_message(request, messages.ERROR,
+                'Error updating profile.')
     else:
         form = TravellerForm(instance=traveller)
     return render(
@@ -110,5 +115,6 @@ def delete_traveller(request):
     """
     traveller = get_object_or_404(Traveller, user=request.user)
     traveller.delete()
+    messages.add_message(request, messages.SUCCESS, 'Profile deleted!')
 
     return HttpResponseRedirect(reverse(homepage))
