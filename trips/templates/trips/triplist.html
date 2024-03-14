@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cloudinary %}
+
+{% block content %}
+
+{% for trip in queryset %}
+    <section class="traveller-section row">
+        <div class="col-12 col-lg-4">
+            <h3>{{ trip.name }}</h3>
+            <h4>{{ trip.planner.firstname }} {{ trip.planner.lastname }}</h4>
+            <div class="trip">
+                {% if trip.trip_photo.url == "" %}
+                    <img class="trip-image" src="{% static 'images/nobody.jpg' %}"
+                        alt="placeholder image">
+                {% else %}
+                    {% cloudinary trip.trip_photo.name width=250 height=250 %}
+                {% endif %}
+            </div>
+            <br>
+                <p>{{ trip.accomm_type }}</p>
+            <br>
+            {% if trip.accomm_type|length > 0 %}
+                <br>
+                <p>{{ trip.accomm_type }}</p>
+                <br>
+            {% endif %}
+            <p>{{ trip.itinerary }}</p>
+        </div>
+    </section>
+{% endfor %}
+
+{% endblock content %}
