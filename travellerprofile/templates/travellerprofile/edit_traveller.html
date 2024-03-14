@@ -3,6 +3,8 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% url 'delete_traveller' as delete_traveller_url %}
+
 <h2>Edit your Profile:</h2>
 <p>Profile for {{ user.username }}</p>
 <form method="POST" enctype="multipart/form-data">
@@ -10,5 +12,7 @@
     {{ form | crispy }}
     <input type="submit" value="Submit">
 </form>
+
+<a href="{% url 'delete_traveller' %}"><strong>Delete Profile</strong></a>
 
 {% endblock content %}
