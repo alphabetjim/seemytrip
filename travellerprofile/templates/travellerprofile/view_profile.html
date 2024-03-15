@@ -17,6 +17,7 @@
     Trip planned: {{ trip.name }}
 {% endfor %}
 Trips planned: {{tripcount}}
+<a href="{% url 'create_trip' %}">Plan a Trip</a>
 {% if tripcount == 0 %}
 <p><strong>It looks as though you haven't planned any trips yet.</strong></p>
 {% else %}

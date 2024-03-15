@@ -50,14 +50,16 @@
                 {% endif %}
             </button>
         </form>
-        <!-- Edit trip functionality -->
+        
         {% if trip.planner.user == user %}
+        <!-- Edit trip functionality -->
         <form action="{% url 'edit_trip' trip.pk %}" method="GET">
             {% csrf_token %}
             <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
-                Edit Trip
+                Edit or Delete Trip
             </button>
         </form>
+
         {% endif %}
     </div>
     <!-- Displaying Trip Comments -->

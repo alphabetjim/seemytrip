@@ -13,5 +13,8 @@
     {{ trip_form | crispy }}
     <input type="submit" value="Submit">
 </form>
-
+{% if edit %}
+<!-- Delete functionality -->
+<a href="{% url 'delete_trip' trip.pk %}"><strong>Delete Trip</strong></a>
+{% endif %}
 {% endblock content %}

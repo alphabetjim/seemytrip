@@ -166,11 +166,10 @@ def create_trip(request):
     Display form to allow traveller creation of a .models:Trip instance
     """
     traveller = get_object_or_404(Traveller, user = request.user)
-    context = {}
     if request.method == "POST":
         trip_form = TripForm(request.POST, request.FILES)
-        if form.is_valid():
-            trip = form.save(commit=False)
+        if trip_form.is_valid():
+            trip = trip_form.save(commit=False)
             trip.planner = traveller
             trip.save()
             return HttpResponseRedirect(reverse('owntriplist'))
@@ -210,10 +209,25 @@ def edit_trip(request, pk):
             {
                 "trip_form": trip_form,
                 "edit": edit,
+                "trip": trip,
             },
         )
     else:
         return HttpResponseRedirect(reverse('triplist'))
 
+def delete_trip(request, pk):
+    """
+    View to allow trip deletion
+    """
+    trip = get_object_or_404(Trip, pk=pk)
+    if trip.planner.user.username == request.user.username:
+        trip.delete()
+        messages.add_message(request, messages.SUCCESS, 'Trip deleted!')
+    else:
+        # Shouldn't be possible for a non-planner user or traveller to be
+        # on this page, but:
+        messages.add_message(request, messages.ERROR,
+            'You can only delete your own trips!')
 
+    return HttpResponseRedirect(reverse('owntriplist'))
     
