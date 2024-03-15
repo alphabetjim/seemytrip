@@ -3,10 +3,17 @@ from django.views import generic
 from .models import TripComment
 
 # Create your views here.
-class TripCommentList(generic.ListView):
+def TripCommentList(request):
     """
     Display all TripComments as a list
     """ 
     queryset = TripComment.objects.all()
     template_name = "comment/commentlist.html"
-    paginate_by = 5
+    
+    return render(
+        request,
+        template_name,
+        {
+            'queryset': queryset,
+        }
+    )

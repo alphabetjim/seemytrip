@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% load cloudinary %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-<section class="traveller-section row">
+<section class="trip-section row">
     <div class="col-12 col-lg-4">
         <h3>{{ trip.name }}</h3>
         <h4>{{ trip.planner.firstname }} {{ trip.planner.lastname }}</h4>
@@ -52,6 +53,28 @@
             <!-- May need to be in the form of a line of text under the button including *You* if attending -->
         </form>
     </div>
+    <!-- Displaying Comments -->
+  <div class="row">
+    
+    <!-- Creating New Comments -->
+    <div class="col-md-4 card mb-4 mt-3">
+        <div class="card-body">
+            {% if user.is_authenticated %}
+            <h3>Leave a comment:</h3>
+            <p>Posting as: {{ user.username }}</p>
+            <form id="tripcommentForm" method="post"
+            style="margin-top: 1.3em;">
+            {{ tripcomment_form | crispy }}
+            {% csrf_token %}
+            <button id="submitButton" type="submit"
+                class="btn btn-signup btn-lg">Submit</button>
+            </form>
+            {% else %}
+            <p>Log in to leave a comment</p>
+            {% endif %}
+        </div>
+    </div>
+  </div>
 </section>
 
 {% endblock content %}

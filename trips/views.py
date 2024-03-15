@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Trip
+from comment.forms import TripCommentForm
 
 # Create your views here.
 def view_trips(request):
@@ -28,12 +29,28 @@ def trip_detail(request, pk):
     else:
         user_following = False
     
+    # Allow users to add a comment
+    if request.method == "POST":
+        tripcomment_form = TripCommentForm(data=request.POST)
+        if tripcomment_form.is_valid():
+            tripcomment = tripcomment_form.save(commit=False)
+            tripcomment.author = request.user
+            tripcomment.trip = trip
+            tripcomment.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Trip Comment submitted.'
+            )
+
+    tripcomment_form = TripCommentForm()
+
     return render(
         request,
         'trips/trip_detail.html',
         {
             'trip': trip,
             'user_following': user_following,
+            'tripcomment_form': tripcomment_form,
         }
     )
 
