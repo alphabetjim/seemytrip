@@ -75,6 +75,35 @@ def follow_trip(request, pk):
 
     return(HttpResponseRedirect(f'../../trips/{pk}'))
 
+def comment_edit(request, trip_pk, tc_pk):
+    """
+    Display an individual TripComment for edit.
+
+    **Context**
+
+    ``trip``
+        An instance of :model:`trips.Trip`.
+    ``tripcomment``
+        A single comment related to the trip.
+    ``tripcomment_form``
+        An instance of :form:`comment.TripCommentForm`
+    """
+    if request.method == "POST":
+
+        trip = get_object_or_404(Trip, pk=trip_pk)
+        tripcomment = get_object_or_404(TripComment, pk=tc_pk)
+        tripcomment_form = TripCommentForm(data=request.POST, instance=tripcomment)
+
+        if tripcomment_form.is_valid() and tripcomment.author == request.user:
+            # tripcomment = tripcomment_form.save(commit=False)
+            tripcomment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+        else:
+            messages.add_message(request, messages.ERROR,
+                'Error updating comment!')
+
+    return HttpResponseRedirect(reverse('tripdetail', args=[trip_pk]))
+
 def comment_delete(request, pk, comment_id):
     """
     Delete an individual trip comment.
