@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from .models import Trip
+from .forms import TripForm
 from comment.models import TripComment
 from comment.forms import TripCommentForm
 from travellerprofile.models import Traveller
@@ -160,3 +161,24 @@ def comment_delete(request, pk, comment_id):
             'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('tripdetail', args=[pk]))
+
+def create_trip(request):
+    """
+    Display form to allow traveller creation of a .models:Trip instance
+    """
+    traveller = get_object_or_404(Traveller, user = request.user)
+    context = {}
+    if request.method == "POST":
+        form = TripForm(request.POST, request.FILES)
+        if form.is_valid():
+            trip = form.save(commit=False)
+            trip.planner = traveller
+            trip.save()
+            return HttpResponseRedirect(reverse('owntriplist'))
+    else:
+        form = TripForm()
+    context['form'] = form
+    return render(
+        request,
+        "trips/create_trip.html",
+        context,)
