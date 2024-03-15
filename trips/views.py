@@ -130,7 +130,6 @@ def comment_edit(request, trip_pk, tc_pk):
         tripcomment_form = TripCommentForm(data=request.POST, instance=tripcomment)
 
         if tripcomment_form.is_valid() and tripcomment.author == request.user:
-            # tripcomment = tripcomment_form.save(commit=False)
             tripcomment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
         else:
@@ -169,16 +168,52 @@ def create_trip(request):
     traveller = get_object_or_404(Traveller, user = request.user)
     context = {}
     if request.method == "POST":
-        form = TripForm(request.POST, request.FILES)
+        trip_form = TripForm(request.POST, request.FILES)
         if form.is_valid():
             trip = form.save(commit=False)
             trip.planner = traveller
             trip.save()
             return HttpResponseRedirect(reverse('owntriplist'))
     else:
-        form = TripForm()
-    context['form'] = form
+        trip_form = TripForm()
+    edit = False
     return render(
         request,
         "trips/create_trip.html",
-        context,)
+        {
+            'trip_form': trip_form,
+            'edit': edit,
+        },)
+
+def edit_trip(request, pk):
+    """
+    Display form to allow a traveller to edit their trip
+    """
+    trip = get_object_or_404(Trip, pk=pk)
+    if trip.planner.user.username == request.user.username:
+        print('User authentication passed')
+        if request.method == "POST":
+            trip_form = TripForm(request.POST, request.FILES, instance = trip)
+            if trip_form.is_valid():
+                trip_form.save()
+                messages.add_message(request, messages.SUCCESS, 'Trip Updated!')
+                return HttpResponseRedirect(reverse('tripdetail', args=[pk]))
+            else:
+                messages.add_message(request, messages.ERROR,
+                    'Error updating trip.')
+        else:
+            trip_form = TripForm(instance = trip)
+        edit = True
+        return render(
+            request,
+            "trips/create_trip.html",
+            {
+                "trip_form": trip_form,
+                "edit": edit,
+            },
+        )
+    else:
+        return HttpResponseRedirect(reverse('triplist'))
+
+
+    
