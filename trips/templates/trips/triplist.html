@@ -5,7 +5,7 @@
 {% block content %}
 
 {% for trip in queryset %}
-    <section class="traveller-section row">
+    <section class="triplist-section row">
         <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
             <h3>{{ trip.name }}</h3>
         </a>
