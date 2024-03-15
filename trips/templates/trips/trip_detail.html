@@ -53,9 +53,38 @@
             <!-- May need to be in the form of a line of text under the button including *You* if attending -->
         </form>
     </div>
-    <!-- Displaying Comments -->
+    <!-- Displaying Trip Comments -->
   <div class="row">
-    
+    <div class="col-md-8 card mb-4  mt-3 ">
+        <h3>Comments:</h3>
+        <div class="card-body">
+          <!-- We want a for loop inside the empty control tags
+            to iterate through each comment in comments -->
+          {% for comment in tripcomments %}
+          <div class="p-2 comments
+            {% if not comment.approved and comment.author == user %}
+            faded{% elif not comment.approved %} d-none{% endif %}">
+            <p class="font-weight-bold">
+              {{ comment.author }}
+              <span class="font-weight-normal">
+                {{ comment.created_on }}
+              </span> wrote:
+            </p>
+            <div id="comment{{ comment.id }}">
+              {{ comment.body | linebreaks }}
+            </div>
+            <!-- Approval conditionality will go here -->
+            {% if user.is_authenticated and comment.author == user %}
+            <button class="btn btn-edit"
+              comment_id="{{ comment.id }}">Edit</button>
+            <button class="btn btn-delete"
+              comment_id="{{ comment.id }}">Delete</button>
+           {% endif %}
+          </div>
+          <!-- Our for loop ends here -->
+          {% endfor %}
+        </div>
+      </div>
     <!-- Creating New Comments -->
     <div class="col-md-4 card mb-4 mt-3">
         <div class="card-body">

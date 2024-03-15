@@ -14,7 +14,7 @@
         <br>
         <small>{{ tripcomment.created_on }}</small></p>
 
-    <p>{{ tripcomment.body | safe }} </p>
+    <p>{{ tripcomment.body | linebreaks }} </p>
 
 {% endfor %}
 

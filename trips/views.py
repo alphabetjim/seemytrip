@@ -24,6 +24,9 @@ def trip_detail(request, pk):
     """
     queryset = Trip.objects.all()
     trip = get_object_or_404(queryset, pk=pk)
+    tripcomments = trip.tripcomments.all().order_by("-created_on")
+    tripcomment_count = trip.tripcomments.count()
+    
     if trip.followers.filter(username=request.user.username).exists():
         user_following = True
     else:
@@ -48,6 +51,8 @@ def trip_detail(request, pk):
         request,
         'trips/trip_detail.html',
         {
+            'tripcomments': tripcomments,
+            'tripcomment_count': tripcomment_count,
             'trip': trip,
             'user_following': user_following,
             'tripcomment_form': tripcomment_form,
