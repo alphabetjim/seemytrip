@@ -12,7 +12,10 @@
 <h2>Photo</h2>
 {% cloudinary traveller.profile_photo.name width=250 height=250 %}
 <h2>Trips Planned</h2>
-{% with tripcount as traveller.trips_planned.count %}
+{% with tripcount as traveller.trips_planned.all.count %}
+{% for trip in trips_planned.all %}
+    Trip planned: {{ trip.name }}
+{% endfor %}
 Trips planned: {{tripcount}}
 {% if tripcount == 0 %}
 <p><strong>It looks as though you haven't planned any trips yet.</strong></p>
