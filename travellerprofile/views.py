@@ -32,6 +32,9 @@ def TravellerList(request):
     :template:`travellerprofile/index.html`
     """
     queryset = Traveller.objects.all()
+    for traveller in queryset:
+        print(traveller.user.username)
+        print(traveller.trips_planned.count)
     template_name = "travellerprofile/travellerlist.html"
     return render(
         request,

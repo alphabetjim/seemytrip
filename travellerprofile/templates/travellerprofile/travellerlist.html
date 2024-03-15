@@ -17,6 +17,16 @@
                 {% endif %}
             </div>
             <p>{{ traveller.bio }}</p>
+            {% if traveller.trips_planned.count == 0 %}
+                <p>This traveller hasn't planned any trips yet.</p>
+            {% else %}
+                <h5>Trips Planned:</h5>
+                {% for trip in traveller.trips_planned.all %}
+                    <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
+                        <p><strong>{{ trip.name }} in {{ trip.region }}</strong></p>
+                    </a>
+                {% endfor %}
+            {% endif %}
         </div>
     </section>
 {% endfor %}
