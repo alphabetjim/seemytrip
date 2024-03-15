@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.models import User
 from .models import Trip
 from comment.models import TripComment
 from comment.forms import TripCommentForm
+from travellerprofile.models import Traveller
 
 # Create your views here.
 def view_trips(request):
@@ -11,13 +13,45 @@ def view_trips(request):
     Display all trips that have been planned
     """
     queryset = Trip.objects.all()
+
+    # template reuse
+    traveller_own = False
+
     return render(
         request,
         'trips/triplist.html',
         {
             'queryset': queryset,
+            'traveller_own': traveller_own,
         }
     )
+
+def view_own_trips(request):
+    """
+    Display only trips planned by current traveller
+    """
+
+    # Ensure that page cannot be accessed just by entering URL
+    if request.user.is_authenticated:
+        try:
+            traveller = get_object_or_404(Traveller, user=request.user)
+        except:
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            queryset = Trip.objects.all().filter(planner = traveller)
+    
+    # reuse the triplist template
+    traveller_own = True
+
+    return render(
+        request,
+        'trips/triplist.html',
+        {
+            'queryset': queryset,
+            'traveller_own': traveller_own,
+        }
+    )        
+
 
 def trip_detail(request, pk):
     """
