@@ -6,7 +6,9 @@
 
 {% for trip in queryset %}
     <section class="triplist-section row">
-        
+        <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
+            <h3>{{ trip.name }}</h3>
+        </a>
         <div class="col-12 col-lg-6">
             <h4>{{ trip.planner.firstname }} {{ trip.planner.lastname }}</h4>
             <div class="trip">

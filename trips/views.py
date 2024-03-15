@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Trip
+from comment.models import TripComment
 from comment.forms import TripCommentForm
 
 # Create your views here.
@@ -73,3 +74,26 @@ def follow_trip(request, pk):
         messages.add_message(request, messages.SUCCESS, 'You are now following this trip!')
 
     return(HttpResponseRedirect(f'../../trips/{pk}'))
+
+def comment_delete(request, pk, comment_id):
+    """
+    Delete an individual trip comment.
+
+    **Context**
+
+    ``trip``
+        An instance of :model:`trips.Trip`.
+    ``tripcomment``
+        A single comment related to the trip.
+    """
+    trip = get_object_or_404(Trip, pk=pk)
+    tripcomment = get_object_or_404(TripComment, pk=comment_id)
+
+    if tripcomment.author == request.user:
+        tripcomment.delete()
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    else:
+        messages.add_message(request, messages.ERROR,
+            'You can only delete your own comments!')
+
+    return HttpResponseRedirect(reverse('tripdetail', args=[pk]))

@@ -46,3 +46,26 @@ def comment_edit(request, trip_pk, tc_pk):
                 'Error updating comment!')
 
     return HttpResponseRedirect(reverse('tripdetail', args=[trip_pk]))
+
+# def comment_delete(request, comment_id):
+#     """
+#     Delete an individual trip comment.
+
+#     **Context**
+
+#     ``trip``
+#         An instance of :model:`trips.Trip`.
+#     ``tripcomment``
+#         A single comment related to the trip.
+#     """
+#     trip = get_object_or_404(Trip, pk=trip_pk)
+#     tripcomment = get_object_or_404(TripComment, pk=comment_id)
+
+#     if tripcomment.author == request.user:
+#         tripcomment.delete()
+#         messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+#     else:
+#         messages.add_message(request, messages.ERROR,
+#             'You can only delete your own comments!')
+
+#     return HttpResponseRedirect(reverse('tripdetail', args=[trip_pk]))
