@@ -42,7 +42,6 @@
         {% endif %}
         <form action="{% url 'follow_trip' trip.pk %}" method="POST">
             {% csrf_token %}
-            <!-- TODO: need to implement something to reflect whether user is attending -->
             <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
                 {% if user_following %}
                 Following
@@ -50,8 +49,18 @@
                 Follow
                 {% endif %}
             </button>
-            <!-- May need to be in the form of a line of text under the button including *You* if attending -->
         </form>
+        
+        {% if trip.planner.user == user %}
+        <!-- Edit trip functionality -->
+        <form action="{% url 'edit_trip' trip.pk %}" method="GET">
+            {% csrf_token %}
+            <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
+                Edit or Delete Trip
+            </button>
+        </form>
+
+        {% endif %}
     </div>
     <!-- Displaying Trip Comments -->
   <div class="row">
