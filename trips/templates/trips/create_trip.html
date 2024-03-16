@@ -11,7 +11,11 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ trip_form | crispy }}
-    <input type="submit" value="Submit">
+    <input type="submit" value={% if edit %}
+        "Update"
+        {% else %}
+        "Submit"
+        {% endif %}>
 </form>
 {% if edit %}
 <!-- Delete functionality -->

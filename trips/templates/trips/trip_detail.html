@@ -36,7 +36,7 @@
             <p><strong>Be the first to follow this trip!</strong></p>    
         {% else %}
             <p><strong>{{ trip.followers.count }} Following: </strong>{% for follower in trip.followers.all %}
-                {{ follower.username }} 
+                {{ follower.username }}
             {% endfor %}
             </p>
         {% endif %}
@@ -50,7 +50,6 @@
                 {% endif %}
             </button>
         </form>
-        
         {% if trip.planner.user == user %}
         <!-- Edit trip functionality -->
         <form action="{% url 'edit_trip' trip.pk %}" method="GET">
