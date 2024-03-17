@@ -14,7 +14,6 @@ def view_trips(request):
     Display all trips that have been planned
     """
     queryset = Trip.objects.all()
-
     # template reuse
     traveller_own = False
 

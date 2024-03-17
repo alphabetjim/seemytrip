@@ -33,19 +33,25 @@
                 <br>
                 <p>This trip involves {{ trip.interests }}</p>
             {% endif %}
-            {% if trip.followers|length == 0 %}
-                <p><strong>Be the first to follow this trip!</strong></p>    
-            {% else %}
-                <p><strong>{{ trip.followers.count }} Following: </strong>{{ trip.followers }}</p>
-            {% endif %}
-            {% if user.is_authenticated %}
-                <form action="{% url 'follow_trip' trip.pk %}" method="POST">
-                    {% csrf_token %}
-                    <!-- TODO: need to implement something to reflect whether user is attending -->
-                    <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">Follow</button>
-                    <!-- May need to be in the form of a line of text under the button including *You* if attending -->
-                </form>
-            {% endif %}
+            <div class="follow">
+                <p id="followers_{{ trip.id }}"><strong>
+                    {% if trip.followers.count == 0 %}
+                        Be the first to follow this trip!    
+                    {% else %}
+                        {{ trip.followers.count }} Following: {% for follower in trip.followers.all %}
+                            {{ follower.username }} 
+                        {% endfor %}
+                    {% endif %}
+                </strong></p>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'follow_trip' trip.pk %}" method="POST">
+                        {% csrf_token %}
+                        <!-- TODO: need to implement something to reflect whether user is attending -->
+                        <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end btn-follow">Follow</button>
+                        <!-- May need to be in the form of a line of text under the button including *You* if attending -->
+                    </form>
+                {% endif %}
+            </div>
         </div>
     </section>
 {% endfor %}
@@ -53,5 +59,6 @@
 {% endblock content %}
 
 {% block scripts %}
-<!-- <script src="{% static 'js/follow.js' %}"></script> -->
+<!-- Script to adapt follow button display -->
+<script src="{% static 'js/followButtonUpdate.js' %}"></script>
 {% endblock %}
