@@ -80,6 +80,7 @@ def create_traveller(request):
             traveller = form.save(commit=False)
             traveller.user = request.user
             traveller.save()
+            messages.add_message(request, messages.SUCCESS, 'Profile Created!')
             return HttpResponseRedirect(reverse(view_profile))
     else:
         form = TravellerForm()
