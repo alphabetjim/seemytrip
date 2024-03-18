@@ -1,6 +1,6 @@
 main {
     background-color: #98838F;
-    background-size: auto;
+    background-size: cover;
 }
 
 h1, 
@@ -50,11 +50,26 @@ a {
     /* background-image: url('/static/images/IMG_1710763753208.jpg'); */
 }
 
-.triplist-background p {
+.travellerlist-background p {
     text-align: center;
 }
 
-.image-div img {
+.image-div,
+.tripinfo-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.follow {
+    align-self: center;
+}
+
+.follow form {
     margin-left: auto;
     margin-right: auto;
+}
+
+.trip-div {
+
 }

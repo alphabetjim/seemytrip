@@ -11,7 +11,7 @@
         </a>
         <div class="col-12 col-lg-6">
             <h4>{{ trip.planner.firstname }} {{ trip.planner.lastname }}</h4>
-            <div class="trip">
+            <div class="image-div">
                 {% if trip.trip_photo.url == "" %}
                     <img class="trip-image" src="{% static 'images/nobody.jpg' %}"
                         alt="placeholder image">
@@ -20,34 +20,52 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 tripinfo-div">
             {% if trip.get_accomm_type_display|length > 0 %}
-                <br>
-                <p>Staying in a {{ trip.get_accomm_type_display }}</p>
+                <div class="trip-accomm_type-div row">
+                    <div class="col-6">
+                        <strong>Accommodation</strong>
+                    </div>
+                    <div class="col-6">
+                        {{ trip.get_accomm_type_display }}
+                    </div>
+                </div>
             {% endif %}
             {% if trip.get_region_display|length > 0 %}
-                <br>
-                <p>Region: {{ trip.get_region_display }}</p>
+                <div class="trip-region-div row">
+                    <div class="col-6">
+                        <strong>Region</strong>
+                    </div>
+                    <div class="col-6">
+                        {{ trip.get_region_display }}
+                    </div>
+                </div>
             {% endif %}
             {% if trip.interests|length > 0 %}
-                <br>
-                <p>This trip involves {{ trip.interests }}</p>
+                <div class="trip-interests-div row">
+                    <div class="col-6">
+                        <strong>Interests</strong>
+                    </div>
+                    <div class="col-6">
+                        {{ trip.interests }}
+                    </div>
+                </div>
             {% endif %}
-            <div class="follow">
-                <p id="followers_{{ trip.id }}"><strong>
+            <div class="follow row">
+                <p id="followers_{{ trip.id }}">
                     {% if trip.followers.count == 0 %}
-                        Be the first to follow this trip!    
+                    <strong> Be the first to follow this trip! </strong>    
                     {% else %}
-                        {{ trip.followers.count }} Following: {% for follower in trip.followers.all %}
+                        <strong>{{ trip.followers.count }} Following: </strong>{% for follower in trip.followers.all %}
                             {{ follower.username }} 
-                        {% endfor %}
+                        {% endfor %} 
                     {% endif %}
-                </strong></p>
+                </p>
                 {% if user.is_authenticated %}
                     <form action="{% url 'follow_trip' trip.pk %}" method="POST">
                         {% csrf_token %}
                         <!-- TODO: need to implement something to reflect whether user is attending -->
-                        <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end btn-follow">Follow</button>
+                        <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-center btn-follow">Follow</button>
                         <!-- May need to be in the form of a line of text under the button including *You* if attending -->
                     </form>
                 {% endif %}
