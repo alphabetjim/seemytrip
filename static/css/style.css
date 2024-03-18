@@ -1,5 +1,6 @@
-body {
-    background-color: #fafafa;
+main {
+    background-color: #98838F;
+    background-size: auto;
 }
 
 h1, 
@@ -10,9 +11,15 @@ h5 {
     text-align: center;
 }
 
+
+a {
+    color: #89A6FB;
+}
+
 .content-container {
     /* From https://css.glass */
-    background: rgba(221, 213, 213, 0.2);
+    /* background: rgba(221, 213, 213, 0.65); */
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
@@ -20,14 +27,34 @@ h5 {
     border: 1px solid rgba(221, 213, 213, 0.22);
 
     margin: auto;
-    color: #fafafa;
+    color: #78C3FB;
 }
 
-.home-background{
-    background-image: url('https://www.serre-chevalier.com/sites/default/files/styles/1920_720/public/2022-03/thibaut-blais-serre-chevalier-vtt-5.jpg?itok=A8dOpupi');
+.background{
     background-repeat: no-repeat;
     background-size: 100% 100%;
     height: 100vh;
     width: 100vw;
-    padding: 40% 30%;
+    /* background-color: #348267; */
+}
+
+.home-background{
+    /* background-image: url('https://www.serre-chevalier.com/sites/default/files/styles/1920_720/public/2022-03/thibaut-blais-serre-chevalier-vtt-5.jpg?itok=A8dOpupi');
+     */
+    background-image: url('/static/images/IMG_1710764159910.jpg');
+}
+
+/* Add home content class w/padding to centre vertically */
+
+.triplist-background{
+    /* background-image: url('/static/images/IMG_1710763753208.jpg'); */
+}
+
+.triplist-background p {
+    text-align: center;
+}
+
+.image-div img {
+    margin-left: auto;
+    margin-right: auto;
 }

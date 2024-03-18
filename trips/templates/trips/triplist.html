@@ -5,7 +5,7 @@
 {% block content %}
 
 {% for trip in queryset %}
-    <section class="triplist-section row">
+    <div class="trip-div row justify-content-center">
         <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
             <h3>{{ trip.name }}</h3>
         </a>
@@ -53,7 +53,7 @@
                 {% endif %}
             </div>
         </div>
-    </section>
+    </div>
 {% endfor %}
 
 {% endblock content %}
