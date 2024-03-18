@@ -13,16 +13,24 @@
 {% cloudinary traveller.profile_photo.name width=250 height=250 %}
 <h2>Trips Planned</h2>
 {% with tripcount as traveller.trips_planned.all.count %}
-{% for trip in trips_planned.all %}
-    Trip planned: {{ trip.name }}
-{% endfor %}
-Trips planned: {{tripcount}}
-<a href="{% url 'create_trip' %}">Plan a Trip</a>
-{% if tripcount == 0 %}
-<p><strong>It looks as though you haven't planned any trips yet.</strong></p>
-{% else %}
-<a href="{% url 'owntriplist' %}">View your trips</a>
-{% endif %}
+    {% for trip in trips_planned.all %}
+        Trip planned: {{ trip.name }}
+    {% endfor %}
+    Trips planned: <strong>{{ traveller.trips_planned.all.count }}</strong>
+    {% if own_profile %}
+        <a href="{% url 'create_trip' %}">Plan a Trip</a>
+    {% endif %}
+    {% if tripcount == 0 %}
+        <p><strong>It looks as though you haven't planned any trips yet.</strong></p>
+    {% else %}
+        {% if own_profile %}
+            <a href="{% url 'owntriplist' %}">View your trips</a>
+        {% else %}
+            <a href="{% url 'owntriplist' %}">View trips planned by {{ traveller.firstname traveller.lastname }}</a>
+        {% endif %}
+    {% endif %}
 {% endwith %}
-<a href="{% url 'edit_traveller' %}"><strong>Edit or Delete Profile</strong></a>
-{% endblock content %}
+{% if own_profile %}
+    <a href="{% url 'edit_traveller' %}"><strong>Edit or Delete Profile</strong></a>
+{% endif %}
+    {% endblock content %}

@@ -9,6 +9,7 @@ from comment.forms import TripCommentForm
 from travellerprofile.models import Traveller
 
 # Create your views here.
+# TODO #54:
 def view_trips(request):
     """
     Display all trips that have been planned

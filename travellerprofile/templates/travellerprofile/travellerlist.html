@@ -7,7 +7,9 @@
 {% for traveller in queryset %}
     <section class="traveller-section row">
         <div class="col-12 col-lg-4">
-            <h3>{{traveller.firstname}} {{traveller.lastname}}</h3>
+            <a href="{% url 'travellerprofile' traveller.pk %}" class="trip-link">
+                <h3>{{traveller.firstname}} {{traveller.lastname}}</h3>
+            </a>
             <div class="profile-image-div">
                 {% if traveller.profile_photo.url == "" %}
                     <img class="profile-image" src="{% static 'images/nobody.jpg' %}"
