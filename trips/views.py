@@ -33,11 +33,14 @@ def view_own_trips(request):
 
     # Ensure that page cannot be accessed just by entering URL
     if request.user.is_authenticated:
+        # Try to get traveller associated with logged-in user
         try:
             traveller = get_object_or_404(Traveller, user=request.user)
         except:
+            # If none exists, redirect
             return HttpResponseRedirect(reverse('home'))
         else:
+            # Otherwise, continue: get that traveller's trips
             queryset = Trip.objects.all().filter(planner = traveller)
     
     # reuse the triplist template
@@ -58,10 +61,12 @@ def trip_detail(request, pk):
     Display detailed view of a trip
     """
     queryset = Trip.objects.all()
+    # get specified trip
     trip = get_object_or_404(queryset, pk=pk)
+    # get the commments on this trip
     tripcomments = trip.tripcomments.all().order_by("-created_on")
     tripcomment_count = trip.tripcomments.count()
-    
+    # create user_following for use in template
     if trip.followers.filter(username=request.user.username).exists():
         user_following = True
     else:
@@ -99,7 +104,7 @@ def follow_trip(request, pk):
     Toggle whether or not a user is following a trip
     """
     trip = get_object_or_404(Trip, pk=pk)
-
+    # toggle to add/remove follower
     if trip.followers.filter(username=request.user.username).exists():
         trip.followers.remove(request.user)
         messages.add_message(request, messages.SUCCESS, 'You are no longer following this trip!')
