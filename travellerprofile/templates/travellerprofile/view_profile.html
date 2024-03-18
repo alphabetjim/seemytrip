@@ -26,7 +26,11 @@
         {% if own_profile %}
             <a href="{% url 'owntriplist' %}">View your trips</a>
         {% else %}
-            <a href="{% url 'owntriplist' %}">View trips planned by {{ traveller.firstname traveller.lastname }}</a>
+            {% for trip in traveller.trips_planned.all %}
+                <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
+                    <p><strong>{{ trip.name }} in {{ trip.region }}</strong></p>
+                </a>
+            {% endfor %}
         {% endif %}
     {% endif %}
 {% endwith %}

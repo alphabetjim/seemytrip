@@ -8,7 +8,9 @@
 <section class="trip-section row">
     <div class="col-12 col-lg-4">
         <h3>{{ trip.name }}</h3>
-        <h4>{{ trip.planner.firstname }} {{ trip.planner.lastname }}</h4>
+        <a href="{% url 'travellerprofile' trip.planner.pk %}" class="trip-link">
+            <h3>{{trip.planner.firstname}} {{trip.planner.lastname}}</h3>
+        </a>
         <div class="trip">
             {% if trip.trip_photo.url == "" %}
                 <img class="trip-image" src="{% static 'images/nobody.jpg' %}"
