@@ -1,0 +1,33 @@
+body {
+    background-color: #fafafa;
+}
+
+h1, 
+h2,
+h3,
+h4,
+h5 {
+    text-align: center;
+}
+
+.content-container {
+    /* From https://css.glass */
+    background: rgba(221, 213, 213, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(221, 213, 213, 0.22);
+
+    margin: auto;
+    color: #fafafa;
+}
+
+.home-background{
+    background-image: url('https://www.serre-chevalier.com/sites/default/files/styles/1920_720/public/2022-03/thibaut-blais-serre-chevalier-vtt-5.jpg?itok=A8dOpupi');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100vh;
+    width: 100vw;
+    padding: 40% 30%;
+}
