@@ -40,16 +40,18 @@
             {% endfor %}
             </p>
         {% endif %}
-        <form action="{% url 'follow_trip' trip.pk %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
-                {% if user_following %}
-                Following
-                {% else %}
-                Follow
-                {% endif %}
-            </button>
-        </form>
+        {% if user.is_authenticated %}
+            <form action="{% url 'follow_trip' trip.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
+                    {% if user_following %}
+                    Following
+                    {% else %}
+                    Follow
+                    {% endif %}
+                </button>
+            </form>
+        {% endif %}
         {% if trip.planner.user == user %}
         <!-- Edit trip functionality -->
         <form action="{% url 'edit_trip' trip.pk %}" method="GET">
@@ -109,7 +111,7 @@
                 class="btn btn-signup btn-lg">Submit</button>
             </form>
             {% else %}
-            <p>Log in to leave a comment</p>
+            <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment</p>
             {% endif %}
         </div>
     </div>
