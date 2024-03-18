@@ -11,7 +11,7 @@
  */
 const editButtons = document.getElementsByClassName('btn-edit');
 const commentText = document.getElementById("id_body");
-const commentForm = document.getElementById('commentForm');
+const commentForm = document.getElementById('tripcommentForm');
 const submitButton = document.getElementById('submitButton');
 
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
