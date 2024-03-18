@@ -46,7 +46,8 @@ def TravellerList(request):
 
 def view_profile(request):
     """
-    Display an individual :model: travellerprofile.Traveller
+    Display individual :model: travellerprofile.Traveller of 
+    logged-in user
 
     **Context**
     ``traveller``
@@ -56,18 +57,43 @@ def view_profile(request):
     :template: ``travellerprofile/view_traveller.html``
     """
     queryset = Traveller.objects.all()
+    # Try to get Traveller instance associated with user
     try:
         traveller = get_object_or_404(queryset, user=request.user)
     except:
+        # redirect if none exists
         return HttpResponseRedirect('../create_traveller')
     else:    
+        # Render profile
+        own_profile = True
         return render(
             request,
             "travellerprofile/view_profile.html",
             {
                 "traveller": traveller,
+                'own_profile': own_profile,
             },
         )
+
+def traveller_profile(request, pk):
+    """
+    Display profile of an individual traveller
+    """
+    queryset = Traveller.objects.all()
+    # get specified traveller
+    traveller = get_object_or_404(queryset, pk=pk)
+    # redirect to view_own_profile if viewing own
+    if traveller.user == request.user:
+        return HttpResponseRedirect(reverse(view_profile))
+    own_profile = False
+    return render(
+        request,
+        'travellerprofile/view_profile.html',
+        {
+            'traveller': traveller,
+            'own_profile': own_profile,
+        }
+    )
 
 def create_traveller(request):
     """
