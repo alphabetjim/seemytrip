@@ -43,6 +43,7 @@
             </p>
         {% endif %}
         {% if user.is_authenticated %}
+            {% if trip.planner.user != user %}
             <form action="{% url 'follow_trip' trip.pk %}" method="POST">
                 {% csrf_token %}
                 <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
@@ -53,6 +54,7 @@
                     {% endif %}
                 </button>
             </form>
+            {% endif %}
         {% endif %}
         {% if trip.planner.user == user %}
         <!-- Edit trip functionality -->
