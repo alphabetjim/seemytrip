@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-
+<h1>Trips Planned</h1>
 {% for trip in queryset %}
     <div class="trip-div row justify-content-center">
         <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
@@ -14,7 +14,7 @@
                     <img class="triplistitem-image" src="{% static 'images/nobody.jpg' %}"
                         alt="placeholder image">
                 {% else %}
-                    <img class="object-fit-cover triplistitem-image" src=" {{ trip.trip_photo.url }}" 
+                    <img class="triplistitem-image" src=" {{ trip.trip_photo.url }}" 
                     alt="{{ trip.name}}">
                 {% endif %}
             </div>

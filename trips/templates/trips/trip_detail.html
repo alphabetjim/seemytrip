@@ -3,59 +3,107 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="tripdetail-content">    
+<div class="tripdetail-content">
+    <h1>{{ trip.name }}</h1>
+    <h3>Planned by <a href="{% url 'travellerprofile' trip.planner.pk %}" class="trip-link">
+        {{trip.planner.firstname}} {{trip.planner.lastname}}
+    </a></h3>   
     <div class="row">
-        <div class="col-12 col-lg-6">
-            <h3>{{ trip.name }}</h3>
-            <a href="{% url 'travellerprofile' trip.planner.pk %}" class="trip-link">
-                <h3>{{trip.planner.firstname}} {{trip.planner.lastname}}</h3>
-            </a>
-            <div class="trip">
+        <div class="col-12">
+            <div class="image-detail-div">
                 {% if trip.trip_photo.url == "" %}
                     <img class="trip-image" src="{% static 'images/nobody.jpg' %}"
                         alt="placeholder image">
                 {% else %}
-                    <img class="object-fit-cover trip-image" src=" {{ trip.trip_photo.url }}" 
+                    <img class="trip-image" src=" {{ trip.trip_photo.url }}" 
                         alt="{{ trip.name}}">
                 {% endif %}
             </div>
-            {% if trip.get_accomm_type_display|length > 0 %}
-                <br>
-                <p>Staying in a {{ trip.get_accomm_type_display }}</p>
-            {% endif %}
-            {% if trip.get_region_display|length > 0 %}
-                <br>
-                <p>Region: {{ trip.get_region_display }}</p>
-            {% endif %}
-            {% if trip.interests|length > 0 %}
-                <br>
-                <p>This trip involves {{ trip.interests }}</p>
-            {% endif %}
-            <br>
-            <p>Setting off on {{ trip.startDate }} and returning {{ trip.endDate }}</p>
-            <p>{{ trip.itinerary }}</p>
-            {% if trip.followers.count == 0 %}
-                <p><strong>Be the first to follow this trip!</strong></p>    
-            {% else %}
-                <p><strong>{{ trip.followers.count }} Following: </strong>{% for follower in trip.followers.all %}
-                    {{ follower.username }}
-                {% endfor %}
-                </p>
-            {% endif %}
-            {% if user.is_authenticated %}
-                {% if trip.planner.user != user %}
-                <form action="{% url 'follow_trip' trip.pk %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
-                        {% if user_following %}
-                        Following
-                        {% else %}
-                        Follow
-                        {% endif %}
-                    </button>
-                </form>
+            <div class="col-12 info-div">
+                <div class="row w-100 tripinfo-row">
+                    <div class="col-6 flex-fill">
+                        <p class="tripInfoType-p"><strong>From</strong></p>
+                    </div>
+                    <div class="col-6 flex-fill">
+                        <p>{{ trip.startDate }}</p>
+                    </div>
+                </div>
+                <div class="row w-100 tripinfo-row">
+                    <div class="col-6 flex-fill">
+                        <p class="tripInfoType-p"><strong>To</strong></p>
+                    </div>
+                    <div class="col-6 flex-fill">
+                        <p>{{ trip.endDate }}</p>
+                    </div>
+                </div>
+                {% if trip.get_accomm_type_display|length > 0 %}
+                    <div class="row w-100 tripinfo-row">
+                        <div class="col-6 flex-fill">
+                            <p class="tripInfoType-p"><strong>Accommodation</strong></p>
+                        </div>
+                        <div class="col-6 flex-fill">
+                            <p>{{ trip.get_accomm_type_display }}</p>
+                        </div>
+                    </div>
                 {% endif %}
-            {% endif %}
+                {% if trip.get_region_display|length > 0 %}
+                    <div class="row w-100 tripinfo-row">
+                        <div class="col-6 flex-fill">
+                            <p class="tripInfoType-p"><strong>Region</strong></p>
+                        </div>
+                        <div class="col-6 flex-fill">
+                            <p>{{ trip.get_region_display }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if trip.interests|length > 0 %}
+                    <div class="row w-100 tripinfo-row">
+                        <div class="col-6 flex-fill">
+                            <p class="tripInfoType-p"><strong>Interests</strong></p>
+                        </div>
+                        <div class="col-6 flex-fill">
+                            <p>{{ trip.interests }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="follow row w-100 tripinfo-row">
+                    <div class="col-6 flex-fill">
+                        <p class="tripInfoType-p"><strong>
+                            {% if trip.followers.count == 0 %}
+                                Be the first to follow this trip!
+                            {% else %}
+                                {{ trip.followers.count }} Following:
+                            {% endif %}
+                        </strong></p>
+                    </div>
+                    <div class="col-6 flex-fill 
+                        {% if trip.followers.count == 0 %}d-none{%endif%}">
+                        <p id="followers_{{ trip.id }}">
+                            {% for follower in trip.followers.all %}
+                                {{ follower.username }} 
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+                <div class="row w-100 border tripdetail-itinerary">
+                    <h4>Itinerary</h4>
+                    <p>{{ trip.itinerary }}</p>
+                </div>
+                {% if user.is_authenticated %}
+                    {% if trip.planner.user != user %}
+                        <div class="row w-100 tripinfo-row">
+                            <div class="col-6 flex-fill">
+                                <form action="{% url 'follow_trip' trip.pk %}" method="POST">
+                                    {% csrf_token %}
+                                    <!-- TODO: need to implement something to reflect whether user is attending -->
+                                    <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-center btn-follow">Follow</button>
+                                    <!-- May need to be in the form of a line of text under the button including *You* if attending -->
+                                </form>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
             {% if trip.planner.user == user %}
             <!-- Edit trip functionality -->
             <form action="{% url 'edit_trip' trip.pk %}" method="GET">

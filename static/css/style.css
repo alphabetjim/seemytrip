@@ -5,13 +5,15 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    font-size: 20px;
 }
 
 main {
-    margin-top: 56px;
+    margin-top: 62px;
 }
 
-h1, 
+h1,
 h2,
 h3,
 h4,
@@ -23,13 +25,21 @@ a {
     color: #89A6FB;
 }
 
+/* Avoid image distortion */
+img {
+    max-width: 100%;
+}
+
 /* Navbar */
 .navbar {
     overflow: hidden;
     /* background-color: #333; */
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
     z-index: 1;
 }
 
@@ -51,7 +61,7 @@ a {
 }
 
 /* Page-specific background classes */
-.home-background{
+.home-background {
     /* background-image: url('https://www.serre-chevalier.com/sites/default/files/styles/1920_720/public/2022-03/thibaut-blais-serre-chevalier-vtt-5.jpg?itok=A8dOpupi');
      */
     background-image: url('/static/images/IMG_1710764159910.jpg');
@@ -59,7 +69,7 @@ a {
 
 /* Add home content class w/padding to centre vertically */
 
-.triplist-background{
+.triplist-background {
     /* empty */
 }
 
@@ -82,6 +92,10 @@ a {
     flex-direction: column;
     align-items: center;
 
+}
+
+.image-div {
+    padding: 10px;
 }
 
 .info-div h5 {
@@ -112,19 +126,22 @@ a {
     margin-left: 40%;
     margin-right: 40%;
 }
-/* Trip & Traveller list pages */
-.profile-image,
-.trip-image {
+
+/* Image sizing on detail pages */
+.profile-image {
     height: 35vw;
 }
+
+/* Trip & Traveller list pages */
+
 
 .travellerlistitem-image {
     height: 25vw;
 }
 
-.triplistitem-image {
-    height: 50vw;
-}
+/* .triplistitem-image {
+    max-width: 100%;
+} */
 
 .tripinfo-row p {
     margin: 0;
@@ -144,14 +161,33 @@ a {
     margin-top: 20px;
 }
 
-/* Trip detail */
+/* Trip detail page*/
 .tripdetail-content .card {
     background-color: #16e0bd;
+}
+
+.image-detail-div {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trip-image {
+    height: 40vw;
+}
+
+.tripdetail-itinerary {
+    max-width: 65%;
+}
+.tripdetail-itinerary p {
+    text-align: center;
 }
 
 /* Media Queries */
 
 @media only screen and (min-width: 600px) {
+
     /* Triplist */
     .triplistitem-image {
         height: 40vw;
@@ -159,6 +195,7 @@ a {
 }
 
 @media only screen and (min-width: 768px) {
+
     /* Triplist */
     .commentBox {
         order: 1
