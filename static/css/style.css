@@ -63,11 +63,16 @@ a {
 }
 
 .image-div,
-.tripinfo-div {
+.info-div {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
     align-items: center;
+
+}
+
+.info-div h5 {
+    align-self: top;
 }
 
 .auth-container {
