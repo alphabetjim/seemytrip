@@ -61,6 +61,12 @@ a {
     flex-direction: column;
 }
 
+.auth-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .follow {
     align-self: center;
 }
@@ -72,4 +78,9 @@ a {
 
 .trip-div {
 
+}
+
+.signup button {
+    margin-left: 40%;
+    margin-right: 40%;
 }
