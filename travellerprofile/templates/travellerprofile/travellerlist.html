@@ -5,12 +5,14 @@
 {% block content %}
 
 <div class="background travellerlist-background travellerlist-div flex-container content-container">
-{% for traveller in queryset %}
+    <h1>Voyagers</h1>
     <div class="traveller-div row justify-content-center">
-        <div class="col-12 col-lg-4 listContainer">
+    {% for traveller in queryset %}
+        <div class="col-12 col-md-6 travellerlistitem">
             <a href="{% url 'travellerprofile' traveller.pk %}" class="trip-link">
                 <h3>{{traveller.firstname}} {{traveller.lastname}}</h3>
             </a>
+            
             <div class="image-div">
                 {% if traveller.profile_photo.url == "" %}
                     <img class="profile-image" src="{% static 'images/nobody.jpg' %}"
@@ -31,8 +33,9 @@
                 {% endfor %}
             {% endif %}
         </div>
+        {% endfor %}
     </div>
-{% endfor %}
+
 </div>
 
 {% endblock content %}

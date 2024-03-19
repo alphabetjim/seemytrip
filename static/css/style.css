@@ -54,11 +54,20 @@ a {
     text-align: center;
 }
 
+.traveller-div {
+    
+}
+
+.travellerlistitem {
+    border: 1px solid black;
+}
+
 .image-div,
 .tripinfo-div {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
 }
 
 .auth-container {
