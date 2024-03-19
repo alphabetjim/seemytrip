@@ -1,9 +1,14 @@
 /* General Styling */
 
-main {
-    margin-top: 56px;
+body {
     background-color: #98838F;
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+main {
+    margin-top: 56px;
 }
 
 h1, 
@@ -13,7 +18,6 @@ h4,
 h5 {
     text-align: center;
 }
-
 
 a {
     color: #89A6FB;
@@ -26,8 +30,12 @@ a {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
+    z-index: 1;
 }
 
+/* Content */
+
+/* General purpose container for all pages */
 .content-container {
     /* From https://css.glass */
     /* background: rgba(221, 213, 213, 0.65); */
@@ -42,14 +50,7 @@ a {
     color: #78C3FB;
 }
 
-.background{
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    height: 100vh;
-    width: 100vw;
-    /* background-color: #348267; */
-}
-
+/* Page-specific background classes */
 .home-background{
     /* background-image: url('https://www.serre-chevalier.com/sites/default/files/styles/1920_720/public/2022-03/thibaut-blais-serre-chevalier-vtt-5.jpg?itok=A8dOpupi');
      */
