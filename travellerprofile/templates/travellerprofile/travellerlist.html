@@ -33,7 +33,7 @@
                             <h5>Trips Planned:</h5>
                             {% for trip in traveller.trips_planned.all %}
                                 <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
-                                    <p><strong>{{ trip.name }} in {{ trip.region }}</strong></p>
+                                    <p><strong><strong><i class="fa-solid fa-road"></i> {{ trip.name }} in {{ trip.get_region_display }}</strong></p>
                                 </a>
                             {% endfor %}
                         {% endif %}
