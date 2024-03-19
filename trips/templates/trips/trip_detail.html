@@ -3,148 +3,149 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-<section class="trip-section row">
-    <div class="col-12 col-lg-4">
-        <h3>{{ trip.name }}</h3>
-        <a href="{% url 'travellerprofile' trip.planner.pk %}" class="trip-link">
-            <h3>{{trip.planner.firstname}} {{trip.planner.lastname}}</h3>
-        </a>
-        <div class="trip">
-            {% if trip.trip_photo.url == "" %}
-                <img class="trip-image" src="{% static 'images/nobody.jpg' %}"
-                    alt="placeholder image">
-            {% else %}
-                <img class="object-fit-cover trip-image" src=" {{ trip.trip_photo.url }}" 
-                    alt="{{ trip.name}}">
+<div class="tripdetail-content">    
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <h3>{{ trip.name }}</h3>
+            <a href="{% url 'travellerprofile' trip.planner.pk %}" class="trip-link">
+                <h3>{{trip.planner.firstname}} {{trip.planner.lastname}}</h3>
+            </a>
+            <div class="trip">
+                {% if trip.trip_photo.url == "" %}
+                    <img class="trip-image" src="{% static 'images/nobody.jpg' %}"
+                        alt="placeholder image">
+                {% else %}
+                    <img class="object-fit-cover trip-image" src=" {{ trip.trip_photo.url }}" 
+                        alt="{{ trip.name}}">
+                {% endif %}
+            </div>
+            {% if trip.get_accomm_type_display|length > 0 %}
+                <br>
+                <p>Staying in a {{ trip.get_accomm_type_display }}</p>
             {% endif %}
-        </div>
-        {% if trip.get_accomm_type_display|length > 0 %}
+            {% if trip.get_region_display|length > 0 %}
+                <br>
+                <p>Region: {{ trip.get_region_display }}</p>
+            {% endif %}
+            {% if trip.interests|length > 0 %}
+                <br>
+                <p>This trip involves {{ trip.interests }}</p>
+            {% endif %}
             <br>
-            <p>Staying in a {{ trip.get_accomm_type_display }}</p>
-        {% endif %}
-        {% if trip.get_region_display|length > 0 %}
-            <br>
-            <p>Region: {{ trip.get_region_display }}</p>
-        {% endif %}
-        {% if trip.interests|length > 0 %}
-            <br>
-            <p>This trip involves {{ trip.interests }}</p>
-        {% endif %}
-        <br>
-        <p>Setting off on {{ trip.startDate }} and returning {{ trip.endDate }}</p>
-        <p>{{ trip.itinerary }}</p>
-        {% if trip.followers.count == 0 %}
-            <p><strong>Be the first to follow this trip!</strong></p>    
-        {% else %}
-            <p><strong>{{ trip.followers.count }} Following: </strong>{% for follower in trip.followers.all %}
-                {{ follower.username }}
-            {% endfor %}
-            </p>
-        {% endif %}
-        {% if user.is_authenticated %}
-            {% if trip.planner.user != user %}
-            <form action="{% url 'follow_trip' trip.pk %}" method="POST">
+            <p>Setting off on {{ trip.startDate }} and returning {{ trip.endDate }}</p>
+            <p>{{ trip.itinerary }}</p>
+            {% if trip.followers.count == 0 %}
+                <p><strong>Be the first to follow this trip!</strong></p>    
+            {% else %}
+                <p><strong>{{ trip.followers.count }} Following: </strong>{% for follower in trip.followers.all %}
+                    {{ follower.username }}
+                {% endfor %}
+                </p>
+            {% endif %}
+            {% if user.is_authenticated %}
+                {% if trip.planner.user != user %}
+                <form action="{% url 'follow_trip' trip.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
+                        {% if user_following %}
+                        Following
+                        {% else %}
+                        Follow
+                        {% endif %}
+                    </button>
+                </form>
+                {% endif %}
+            {% endif %}
+            {% if trip.planner.user == user %}
+            <!-- Edit trip functionality -->
+            <form action="{% url 'edit_trip' trip.pk %}" method="GET">
                 {% csrf_token %}
                 <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
-                    {% if user_following %}
-                    Following
-                    {% else %}
-                    Follow
-                    {% endif %}
+                    Edit or Delete Trip
                 </button>
             </form>
-            {% endif %}
-        {% endif %}
-        {% if trip.planner.user == user %}
-        <!-- Edit trip functionality -->
-        <form action="{% url 'edit_trip' trip.pk %}" method="GET">
-            {% csrf_token %}
-            <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
-                Edit or Delete Trip
-            </button>
-        </form>
 
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
-    <!-- Displaying Trip Comments -->
-  <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 ">
-        <h3>Comments:</h3>
-        <div class="card-body">
-          <!-- We want a for loop inside the empty control tags
-            to iterate through each comment in comments -->
-          {% for comment in tripcomments %}
-            <div class="p-2 comments
-                {% if not comment.approved and comment.author == user %}
-                faded{% elif not comment.approved %} d-none{% endif %}">
-                <p class="font-weight-bold">
-                {{ comment.author }}
-                <span class="font-weight-normal">
-                    {{ comment.created_on }}
-                </span> wrote:
-                </p>
-                <div id="comment{{ comment.id }}">
-                {{ comment.body | linebreaks }}
-                </div>
-                {% if not comment.approved and comment.author == user %}
-                    <p class="approval">This comment is awaiting approval.</p>
+    <div class="row">
+        <!-- Creating New Comments -->
+        <div class="col-md-4 card mb-4 mt-3 commentBox">
+            <div class="card-body">
+                {% if user.is_authenticated %}
+                <h3>Leave a comment:</h3>
+                <p>Posting as: {{ user.username }}</p>
+                <form id="tripcommentForm" method="post"
+                style="margin-top: 1.3em;">
+                {{ tripcomment_form | crispy }}
+                {% csrf_token %}
+                <button id="submitButton" type="submit"
+                    class="btn btn-signup btn-lg">Submit</button>
+                </form>
+                {% else %}
+                <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment</p>
                 {% endif %}
-                {% if user.is_authenticated and comment.author == user %}
-                <button class="btn btn-edit"
-                comment_id="{{ comment.id }}">Edit</button>
-                <button class="btn btn-delete"
-                comment_id="{{ comment.id }}">Delete</button>
-            {% endif %}
             </div>
-          <!-- Our for loop ends here -->
-          {% endfor %}
         </div>
-      </div>
-    <!-- Creating New Comments -->
-    <div class="col-md-4 card mb-4 mt-3">
-        <div class="card-body">
-            {% if user.is_authenticated %}
-            <h3>Leave a comment:</h3>
-            <p>Posting as: {{ user.username }}</p>
-            <form id="tripcommentForm" method="post"
-            style="margin-top: 1.3em;">
-            {{ tripcomment_form | crispy }}
-            {% csrf_token %}
-            <button id="submitButton" type="submit"
-                class="btn btn-signup btn-lg">Submit</button>
-            </form>
-            {% else %}
-            <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment</p>
-            {% endif %}
+        <!-- Displaying Trip Comments -->
+        <div class="col-md-8 card mb-4  mt-3 ">
+            <h3>Comments:</h3>
+            <div class="card-body">
+            <!-- We want a for loop inside the empty control tags
+                to iterate through each comment in comments -->
+            {% for comment in tripcomments %}
+                <div class="p-2 comments
+                    {% if not comment.approved and comment.author == user %}
+                    faded{% elif not comment.approved %} d-none{% endif %}">
+                    <p class="font-weight-bold">
+                    {{ comment.author }}
+                    <span class="font-weight-normal">
+                        {{ comment.created_on }}
+                    </span> wrote:
+                    </p>
+                    <div id="comment{{ comment.id }}">
+                    {{ comment.body | linebreaks }}
+                    </div>
+                    {% if not comment.approved and comment.author == user %}
+                        <p class="approval">This comment is awaiting approval.</p>
+                    {% endif %}
+                    {% if user.is_authenticated and comment.author == user %}
+                    <button class="btn btn-edit"
+                    comment_id="{{ comment.id }}">Edit</button>
+                    <button class="btn btn-delete"
+                    comment_id="{{ comment.id }}">Delete</button>
+                {% endif %}
+                </div>
+            <!-- Our for loop ends here -->
+            {% endfor %}
+            </div>
         </div>
     </div>
-  </div>
+</div>
   <!-- Delete confirmation modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1"
+<div class="modal fade" id="deleteModal" tabindex="-1"
     aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title"
-            id="deleteModalLabel">Delete comment?</h5>
-        <button type="button" class="btn-close"
-            data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        Are you sure you want to delete your comment?
-        This action cannot be undone.
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-            data-bs-dismiss="modal">Close</button>
-        <a id="deleteConfirm" href="#" class="btn
-            btn-danger">Delete</a>
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title"
+                id="deleteModalLabel">Delete comment?</h5>
+            <button type="button" class="btn-close"
+                data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            Are you sure you want to delete your comment?
+            This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal">Close</button>
+            <a id="deleteConfirm" href="#" class="btn
+                btn-danger">Delete</a>
+            </div>
         </div>
     </div>
-    </div>
-
-</section>
+</div>
 
 {% endblock content %}
 
