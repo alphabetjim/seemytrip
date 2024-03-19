@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load cloudinary %}
 
 {% block content %}
 
@@ -15,10 +14,11 @@
             <div class="row">
                 <div class="col-6 image-div">
                     {% if traveller.profile_photo.url == "" %}
-                    <img class="profile-image" src="{% static 'images/nobody.jpg' %}"
+                    <img class="travellerlistitem-image" src="{% static 'images/nobody.jpg' %}"
                         alt="placeholder image">
                     {% else %}
-                        {% cloudinary traveller.profile_photo.name width=250 height=250 %}
+                    <img class="object-fit-cover travellerlistitem-image" src=" {{ traveller.profile_photo.url }}" 
+                        alt="{{ traveller.firstname }} {{ traveller.lastname}}">
                     {% endif %}
                 </div>
                 <div class="col-6 info-div">

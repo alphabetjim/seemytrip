@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load cloudinary %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -16,7 +15,8 @@
                 <img class="trip-image" src="{% static 'images/nobody.jpg' %}"
                     alt="placeholder image">
             {% else %}
-                {% cloudinary trip.trip_photo.name width=250 height=250 %}
+                <img class="object-fit-cover trip-image" src=" {{ trip.trip_photo.url }}" 
+                    alt="{{ trip.name}}">
             {% endif %}
         </div>
         {% if trip.get_accomm_type_display|length > 0 %}

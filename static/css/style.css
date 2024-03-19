@@ -60,7 +60,7 @@ a {
 /* Add home content class w/padding to centre vertically */
 
 .triplist-background{
-    /* background-image: url('/static/images/IMG_1710763753208.jpg'); */
+    /* empty */
 }
 
 .travellerlist-background p {
@@ -68,7 +68,7 @@ a {
 }
 
 .traveller-div {
-    
+    /* empty */
 }
 
 .travellerlistitem {
@@ -104,10 +104,48 @@ a {
 }
 
 .trip-div {
+    /* Style the appearance of each trip in triplist here */
 
 }
 
 .signup button {
     margin-left: 40%;
     margin-right: 40%;
+}
+
+.profile-image,
+.trip-image {
+    height: 35vw;
+}
+
+.travellerlistitem-image {
+    height: 25vw;
+}
+
+.triplistitem-image {
+    height: 50vw;
+}
+
+.tripinfo-row p {
+    margin: 0;
+}
+
+.tripInfoValue-p {
+    width: 35%;
+}
+
+.tripInfoType-p {
+    text-align: right;
+}
+
+.tripinfo-row button {
+    position: relative;
+    left: 43%;
+    margin-top: 20px;
+}
+
+@media only screen and (min-width: 600px) {
+    .triplistitem-image {
+        height: 40vw;
+    }
 }
