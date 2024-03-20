@@ -19,7 +19,7 @@
                         alt="{{ trip.name}}">
                 {% endif %}
             </div>
-            <div class="col-12 info-div">
+            <div class="info-div">
                 <div class="row w-100 tripinfo-row">
                     <div class="col-6 flex-fill">
                         <p class="tripInfoType-p"><strong>From</strong></p>
@@ -104,15 +104,22 @@
                     <h4>Itinerary</h4>
                     <p>{{ trip.itinerary }}</p>
                 </div>
-                {% if trip.journal_entries.count == 0 %}
-                    <p><strong>No journal entries yet for this trip</strong></p>
-                {% else %}
-                    {% for entry in trip.journal_entries.all %}
-                        <a href="{% url 'trip_day' entry.trip.pk entry.pk %}">
-                            <p><strong>{{ entry.title }}</strong></p>
-                        </a>
-                    {% endfor %}
-                {% endif %}
+                <div class="row tripjournal">
+                    <h4>Journal</h4>
+                    {% if trip.journal_entries.count == 0 %}
+                        <div class="col-6">
+                            <p><strong>No journal entries yet for this trip</strong></p>
+                        </div>    
+                    {% else %}
+                        {% for entry in trip.journal_entries.all %}
+                        <div class="col-6 text-center">
+                            <a href="{% url 'trip_day' entry.trip.pk entry.pk %}">
+                                <p><strong>{{ entry.title }}</strong></p>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
                 {% if user.is_authenticated %}
                     {% if trip.planner.user != user %}
                         <div class="row w-100">
@@ -129,10 +136,16 @@
                     {% endif %}
                 {% endif %}
             </div>
-            {% if trip.planner.user == user %}
+        </div>
+    </div>
+    {% if trip.planner.user == user %}
+    <div class="row">
+        <div class="col-6 text-center">
             <a href="{% url 'create_trip_day' trip.pk %}" class="tripday-link">
                 Add Journal Entry
             </a>
+        </div>
+        <div class="col-6 text-center">
             <!-- Edit trip functionality -->
             <form action="{% url 'edit_trip' trip.pk %}" method="GET">
                 {% csrf_token %}
@@ -141,9 +154,10 @@
                 </button>
             </form>
 
-            {% endif %}
+            
         </div>
     </div>
+    {% endif %}
     <div class="row">
         <!-- Creating New Comments -->
         <div class="col-md-4 card mb-4 mt-3 commentBox">
