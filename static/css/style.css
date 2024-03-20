@@ -109,10 +109,66 @@ img {
 .home-background {
     /* background-image: url('https://www.serre-chevalier.com/sites/default/files/styles/1920_720/public/2022-03/thibaut-blais-serre-chevalier-vtt-5.jpg?itok=A8dOpupi');
      */
-    background-image: url('/static/images/IMG_1710764159910.jpg');
+    background-image: url('/static/images/z-TrhLCn1abMU-unsplash.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Add home content class w/padding to centre vertically */
+
+.homepage-links {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    /* height: 20vh; */
+    width: 30vw;
+    margin: auto;
+}
+
+.homepage-link {
+    height: 8vh;
+    width: 10vw;
+    min-width: 180px;
+    background-color: #16e0bd;
+    margin: 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-content-container {
+    /* From https://css.glass */
+    /* background: rgba(221, 213, 213, 0.65); */
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(221, 213, 213, 0.22);
+
+    margin: auto;
+    color: #78C3FB;
+    
+    /* Positioning */
+    height: 60%;
+    width: 40%;
+    min-width: 350px;
+    margin-top: 20vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
 
 .triplist-background {
     /* empty */
@@ -210,20 +266,35 @@ img {
 }
 
 .trip-image {
-    height: 40vw;
+    height: 35vw;
 }
 
 .tripdetail-itinerary {
-    max-width: 65%;
+    max-width: 60%;
 }
 .tripdetail-itinerary p {
     text-align: center;
+    width: 90%;
+    margin: auto;
 }
 
 .tripdetail-follow {
     padding-top: 1%;
 }
 
+/* Trip day page */
+.trip-day-image {
+    height: 30vw;
+}
+
+.tripday-body {
+    max-width: 30%;
+}
+.tripday-body p {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
 
 /* Form display pages */
 .formDiv {
