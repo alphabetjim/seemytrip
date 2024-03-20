@@ -1,5 +1,5 @@
 from django import forms
-from .models import Trip
+from .models import Trip, TripDay
 
 
 class TripForm(forms.ModelForm):
@@ -19,3 +19,18 @@ class TripForm(forms.ModelForm):
         model = Trip
         fields = ('name', 'region', 'accomm_type', 'itinerary', 
             'interests', 'startDate', 'endDate', 'trip_photo',)
+
+
+class TripDayForm(forms.ModelForm):
+    """
+    Form class for travellers to record a trip day's journal entry 
+    """
+    body = forms.CharField(widget=forms.Textarea(attrs={'type': 'text','rows': 4, 'cols': 40}))
+    day_photo = forms.ImageField()
+    day_date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'})
+    )
+
+    class Meta:
+        model = TripDay
+        fields = ('title', 'body', 'day_photo', 'day_date',)
