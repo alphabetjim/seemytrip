@@ -159,3 +159,11 @@ def custom_404(request, exception):
         'travellerprofile/error404.html',
         status=404
     )
+
+# custom 404 view
+def custom_500(request, exception):
+    return render(
+        request,
+        'travellerprofile/error404.html',
+        status=500
+    )
