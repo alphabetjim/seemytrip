@@ -120,10 +120,6 @@ img {
     justify-content: center;
 }
 
-/* Add home content class w/padding to centre vertically */
-.home-content{
-    
-}
 
 .homepage-links {
     display: flex;
@@ -131,7 +127,7 @@ img {
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    height: 20vh;
+    /* height: 20vh; */
     width: 30vw;
     margin: auto;
 }
@@ -139,6 +135,7 @@ img {
 .homepage-link {
     height: 8vh;
     width: 10vw;
+    min-width: 180px;
     background-color: #16e0bd;
     margin: 10px 5px;
     display: flex;
@@ -160,14 +157,17 @@ img {
     color: #78C3FB;
     
     /* Positioning */
-    height: 40%;
+    height: 60%;
     width: 40%;
+    min-width: 350px;
     margin-top: 20vh;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    padding: 20px;
 }
 
 .triplist-background {
