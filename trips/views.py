@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
-from .models import Trip
-from .forms import TripForm
+from .models import Trip, TripDay
+from .forms import TripForm, TripDayForm
 from comment.models import TripComment
 from comment.forms import TripCommentForm
 from travellerprofile.models import Traveller
@@ -187,7 +187,8 @@ def create_trip(request):
         {
             'trip_form': trip_form,
             'edit': edit,
-        },)
+        },
+    )
 
 def edit_trip(request, pk):
     """
@@ -235,4 +236,93 @@ def delete_trip(request, pk):
             'You can only delete your own trips!')
 
     return HttpResponseRedirect(reverse('owntriplist'))
+
+def trip_day(request, pk, day_pk):
+    """
+    Display detailed view of a trip day journal entry
+    """
+    queryset = TripDay.objects.all()
+    # get specified trip
+    trip_day = get_object_or_404(queryset, pk=day_pk)
+    
+    return render(
+        request,
+        'trips/trip_day.html',
+        {
+            'trip_day': trip_day,
+        }
+    )
+
+def create_trip_day(request, trip_pk):
+    """
+    Display form to allow traveller creation of a .models:TripDay instance
+    """
+    trip = get_object_or_404(Trip, pk=trip_pk)
+    if request.method == "POST":
+        trip_day_form = TripDayForm(request.POST, request.FILES)
+        if trip_day_form.is_valid():
+            trip_day = trip_day_form.save(commit=False)
+            trip_day.trip = trip
+            trip_day.author = trip.planner
+            trip_day.save()
+            return HttpResponseRedirect(reverse('tripdetail', args=[trip_pk]))
+    else:
+        trip_day_form = TripDayForm()
+    edit = False
+    return render(
+        request,
+        "trips/create_trip_day.html",
+        {
+            'trip_day_form': trip_day_form,
+            'edit': edit,
+        },
+    )
+
+def edit_trip_day(request, pk, day_pk):
+    """
+    Display form to allow a traveller to edit a trip journal entry
+    """
+    trip_day = get_object_or_404(TripDay, pk=day_pk)
+    if trip_day.author.user.username == request.user.username:
+        print('User authentication passed')
+        if request.method == "POST":
+            trip_day_form = TripDayForm(request.POST, request.FILES, instance = trip_day)
+            if trip_day_form.is_valid():
+                trip_day_form.save()
+                messages.add_message(request, messages.SUCCESS, 'Journal Entry Updated!')
+                return HttpResponseRedirect(reverse('trip_day', args=[pk, day_pk]))
+            else:
+                messages.add_message(request, messages.ERROR,
+                    'Error updating trip.')
+        else:
+            trip_day_form = TripDayForm(instance = trip_day)
+        edit = True
+        return render(
+            request,
+            "trips/create_trip_day.html",
+            {
+                "trip_day_form": trip_day_form,
+                "edit": edit,
+                "trip_day": trip_day,
+            },
+        )
+    else:
+        return HttpResponseRedirect(reverse('tripdetail', args=[pk]))
+
+def delete_trip_day(request, pk, day_pk):
+    """
+    View to allow trip day journal entry deletion
+    """
+    trip_day = get_object_or_404(TripDay, pk=day_pk)
+    if trip_day.author.user.username == request.user.username:
+        trip_day.delete()
+        messages.add_message(request, messages.SUCCESS, 'Journal Entry deleted!')
+    else:
+        # Shouldn't be possible for a non-planner user or traveller to be
+        # on this page, but:
+        messages.add_message(request, messages.ERROR,
+            'You can only delete your own journal entries!')
+
+    return HttpResponseRedirect(reverse('tripdetail', args=[pk]))
+
     

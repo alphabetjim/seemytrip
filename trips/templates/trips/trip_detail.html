@@ -104,6 +104,15 @@
                     <h4>Itinerary</h4>
                     <p>{{ trip.itinerary }}</p>
                 </div>
+                {% if trip.journal_entries.count == 0 %}
+                    <p><strong>No journal entries yet for this trip</strong></p>
+                {% else %}
+                    {% for entry in trip.journal_entries.all %}
+                        <a href="{% url 'trip_day' entry.trip.pk entry.pk %}">
+                            <p><strong>{{ entry.title }}</strong></p>
+                        </a>
+                    {% endfor %}
+                {% endif %}
                 {% if user.is_authenticated %}
                     {% if trip.planner.user != user %}
                         <div class="row w-100">
@@ -121,6 +130,9 @@
                 {% endif %}
             </div>
             {% if trip.planner.user == user %}
+            <a href="{% url 'create_trip_day' trip.pk %}" class="tripday-link">
+                Add Journal Entry
+            </a>
             <!-- Edit trip functionality -->
             <form action="{% url 'edit_trip' trip.pk %}" method="GET">
                 {% csrf_token %}

@@ -3,114 +3,117 @@
 
 {% block content %}
 <h1>Trips Planned</h1>
-{% for trip in queryset %}
-    <div class="trip-div row justify-content-center">
-        <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
-            <h3>{{ trip.name }}</h3>
-        </a>
-        <div class="col-12 col-md-6">
-            <div class="image-div">
-                {% if trip.trip_photo.url == "" %}
-                    <img class="triplistitem-image" src="{% static 'images/nobody.jpg' %}"
-                        alt="placeholder image">
-                {% else %}
-                    <img class="triplistitem-image" src=" {{ trip.trip_photo.url }}" 
-                    alt="{{ trip.name}}">
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-12 col-md-6 info-div">
-            <div class="row w-100 tripinfo-row">
-                <div class="col-6 flex-fill">
-                    <p class="tripInfoType-p"><strong>Planner</strong></p>
-                </div>
-                <div class="col-6 flex-fill">
-                    <p class="tripInfoValue-p">{{ trip.planner.firstname }} {{ trip.planner.lastname }}</p>
-                </div>
-            </div>
-            <div class="row w-100 tripinfo-row">
-                <div class="col-6 flex-fill">
-                    <p class="tripInfoType-p"><strong>Status</strong></p>
-                </div>
-                <div class="col-6 flex-fill">
-                    <p>{% if trip.passed %}
-                            Completed
-                        {% elif trip.upcoming %}
-                            Upcoming
-                        {% else %}
-                            Underway
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-            {% if trip.get_accomm_type_display|length > 0 %}
-                <div class="row w-100 tripinfo-row">
-                    <div class="col-6 flex-fill">
-                        <p class="tripInfoType-p"><strong>Accommodation</strong></p>
-                    </div>
-                    <div class="col-6 flex-fill">
-                        <p>{{ trip.get_accomm_type_display }}</p>
-                    </div>
-                </div>
-            {% endif %}
-            {% if trip.get_region_display|length > 0 %}
-                <div class="row w-100 tripinfo-row">
-                    <div class="col-6 flex-fill">
-                        <p class="tripInfoType-p"><strong>Region</strong></p>
-                    </div>
-                    <div class="col-6 flex-fill">
-                        <p>{{ trip.get_region_display }}</p>
-                    </div>
-                </div>
-            {% endif %}
-            {% if trip.interests|length > 0 %}
-                <div class="row w-100 tripinfo-row">
-                    <div class="col-6 flex-fill">
-                        <p class="tripInfoType-p"><strong>Interests</strong></p>
-                    </div>
-                    <div class="col-6 flex-fill">
-                        <p>{{ trip.interests }}</p>
-                    </div>
-                </div>
-            {% endif %}
-            <div class="row w-100 tripinfo-row">
-                <div class="col-6 flex-fill">
-                    <p class="tripInfoType-p"><strong>
-                        {% if trip.followers.count == 0 %}
-                            Be the first to follow this trip!
-                        {% else %}
-                            {{ trip.followers.count }} Following:
-                        {% endif %}
-                    </strong></p>
-                </div>
-                <div class="col-6 flex-fill 
-                    {% if trip.followers.count == 0 %}d-none{%endif%}">
-                    <p id="followers_{{ trip.id }}">
-                        {% for follower in trip.followers.all %}
-                            {{ follower.username }} 
-                        {% endfor %}
-                    </p>
-                </div>
-                {% if user.is_authenticated %}
-                    {% if trip.planner.user != user %}
-                        <div class="row w-100 triplist-followbuttonrow">
-                            <div class="col-6 flex-fill">
-                                <form action="{% url 'follow_trip' trip.pk %}" method="POST">
-                                    {% csrf_token %}
-                                    <div class="text-center tripdetail-follow">
-                                        <button type="submit" name="trip_id" value="{{ trip.id }}"
-                                             class="button btn-follow">Follow</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+<div class="row">
+    {% for trip in queryset %}
+    <div class="col-12 col-lg-6">
+        <div class="trip-div row justify-content-center">
+            <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
+                <h3>{{ trip.name }}</h3>
+            </a>
+            <div class="col-12 col-md-6 col-lg-12">
+                <div class="image-div">
+                    {% if trip.trip_photo.url == "" %}
+                        <img class="triplistitem-image" src="{% static 'images/nobody.jpg' %}"
+                            alt="placeholder image">
+                    {% else %}
+                        <img class="triplistitem-image" src=" {{ trip.trip_photo.url }}" 
+                        alt="{{ trip.name}}">
                     {% endif %}
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-12 info-div">
+                <div class="row w-100 tripinfo-row">
+                    <div class="col-6 flex-fill">
+                        <p class="tripInfoType-p"><strong>Planner</strong></p>
+                    </div>
+                    <div class="col-6 flex-fill">
+                        <p class="tripInfoValue-p">{{ trip.planner.firstname }} {{ trip.planner.lastname }}</p>
+                    </div>
+                </div>
+                <div class="row w-100 tripinfo-row">
+                    <div class="col-6 flex-fill">
+                        <p class="tripInfoType-p"><strong>Status</strong></p>
+                    </div>
+                    <div class="col-6 flex-fill">
+                        <p>{% if trip.passed %}
+                                Completed
+                            {% elif trip.upcoming %}
+                                Upcoming
+                            {% else %}
+                                Underway
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                {% if trip.get_accomm_type_display|length > 0 %}
+                    <div class="row w-100 tripinfo-row">
+                        <div class="col-6 flex-fill">
+                            <p class="tripInfoType-p"><strong>Accommodation</strong></p>
+                        </div>
+                        <div class="col-6 flex-fill">
+                            <p>{{ trip.get_accomm_type_display }}</p>
+                        </div>
+                    </div>
                 {% endif %}
+                {% if trip.get_region_display|length > 0 %}
+                    <div class="row w-100 tripinfo-row">
+                        <div class="col-6 flex-fill">
+                            <p class="tripInfoType-p"><strong>Region</strong></p>
+                        </div>
+                        <div class="col-6 flex-fill">
+                            <p>{{ trip.get_region_display }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if trip.interests|length > 0 %}
+                    <div class="row w-100 tripinfo-row">
+                        <div class="col-6 flex-fill">
+                            <p class="tripInfoType-p"><strong>Interests</strong></p>
+                        </div>
+                        <div class="col-6 flex-fill">
+                            <p>{{ trip.interests }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="row w-100 tripinfo-row">
+                    <div class="col-6 flex-fill">
+                        <p class="tripInfoType-p"><strong>
+                            {% if trip.followers.count == 0 %}
+                                Be the first to follow this trip!
+                            {% else %}
+                                {{ trip.followers.count }} Following:
+                            {% endif %}
+                        </strong></p>
+                    </div>
+                    <div class="col-6 flex-fill 
+                        {% if trip.followers.count == 0 %}d-none{%endif%}">
+                        <p id="followers_{{ trip.id }}">
+                            {% for follower in trip.followers.all %}
+                                {{ follower.username }} 
+                            {% endfor %}
+                        </p>
+                    </div>
+                    {% if user.is_authenticated %}
+                        {% if trip.planner.user != user %}
+                            <div class="row w-100 triplist-followbuttonrow">
+                                <div class="col-6 flex-fill">
+                                    <form action="{% url 'follow_trip' trip.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="text-center tripdetail-follow">
+                                            <button type="submit" name="trip_id" value="{{ trip.id }}"
+                                                class="button btn-follow">Follow</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-{% endfor %}
-
+    {% endfor %}
+</div>
 {% endblock content %}
 
 {% block scripts %}

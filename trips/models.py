@@ -44,3 +44,21 @@ class Trip(models.Model):
     @property
     def underway(self):
         return date.today()>self.startDate and date.today()<self.endDate
+
+
+class TripDay(models.Model):
+    """
+    Stores a single Trip Journal entry.
+    Related to Trip model and Traveller model.
+    """
+    title = models.CharField(max_length=100, unique=True)
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name="journal_entries")
+    author = models.ForeignKey(Traveller, on_delete=models.CASCADE, related_name="author")
+    body = models.TextField(max_length=1000)
+    day_photo = models.ImageField(upload_to='tripDayImages/', blank=True, default='placeholder')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    day_date = models.DateField(blank=True)
+
+    def __str__(self):
+        return f"{self.pk}: {self.title} of {self.author}'s {self.trip}"
