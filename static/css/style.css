@@ -175,7 +175,7 @@ img {
 
 /* Image sizing on detail pages */
 .profile-image {
-    height: 35vw;
+    height: 30vw;
 }
 
 /* Trip & Traveller list pages */
@@ -243,7 +243,7 @@ img {
 
     /* Triplist */
     .triplistitem-image {
-        height: 40vw;
+        height: 25vw;
     }
 }
 
