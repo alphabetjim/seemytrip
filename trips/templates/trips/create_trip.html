@@ -6,20 +6,24 @@
 {% if edit %}
     <h2>Edit Your Trip</h2>
 {% else %}
-    <h2>Plan Your Trip</h2>
+    <h2>Plan Your Adventure</h2>
 {% endif %}
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ trip_form | crispy }}
-    <input type="submit" value={% if edit %}
-        "Update"
-        {% else %}
-        "Submit"
-        {% endif %}>
-</form>
-{% if edit %}
-<!-- Delete functionality -->
-<button class="btn btn-delete" id="btn-delete"><strong>Delete Trip</strong></button>
+<div class="formDiv flex-column justify-content-around align-items-center">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ trip_form | crispy }}
+        <div class="text-center">
+            <input type="submit" value={% if edit %}
+            "Update"
+            {% else %}
+            "Submit"
+            {% endif %}>
+        </div>
+    </form>
+    {% if edit %}
+    <!-- Delete functionality -->
+    <button class="btn btn-delete" id="btn-delete"><strong>Delete Trip</strong></button>
+</div>
 <!-- Delete confirmation modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1"
 aria-labelledby="deleteModalLabel" aria-hidden="true">

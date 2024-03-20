@@ -1,36 +1,49 @@
 {% extends "base.html" %}
 {% load static %}
-{% load cloudinary %}
 
 {% block content %}
 
-{% for traveller in queryset %}
-    <section class="traveller-section row">
-        <div class="col-12 col-lg-4">
+<div class="background travellerlist-background travellerlist-div content-container">
+    <h1>Voyagers</h1>
+    <div class="traveller-div row justify-content-center">
+    {% for traveller in queryset %}
+        <div class="col-12 col-md-6 travellerlistitem">
             <a href="{% url 'travellerprofile' traveller.pk %}" class="trip-link">
                 <h3>{{traveller.firstname}} {{traveller.lastname}}</h3>
             </a>
-            <div class="profile-image-div">
-                {% if traveller.profile_photo.url == "" %}
-                    <img class="profile-image" src="{% static 'images/nobody.jpg' %}"
+            <div class="row">
+                <div class="col-6 image-div">
+                    {% if traveller.profile_photo.url == "" %}
+                    <img class="travellerlistitem-image" src="{% static 'images/nobody.jpg' %}"
                         alt="placeholder image">
-                {% else %}
-                    {% cloudinary traveller.profile_photo.name width=250 height=250 %}
-                {% endif %}
-            </div>
-            <p>{{ traveller.bio }}</p>
-            {% if traveller.trips_planned.count == 0 %}
-                <p>This traveller hasn't planned any trips yet.</p>
-            {% else %}
-                <h5>Trips Planned:</h5>
-                {% for trip in traveller.trips_planned.all %}
-                    <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
-                        <p><strong>{{ trip.name }} in {{ trip.region }}</strong></p>
-                    </a>
-                {% endfor %}
-            {% endif %}
+                    {% else %}
+                    <img class="object-fit-cover travellerlistitem-image" src=" {{ traveller.profile_photo.url }}" 
+                        alt="{{ traveller.firstname }} {{ traveller.lastname}}">
+                    {% endif %}
+                </div>
+                <div class="col-6 info-div">
+                    <div class="bio">
+                        <h5>About</h5>
+                        <p>{{ traveller.bio }}</p>
+                    </div>
+                    <div class="tripsPlanned">
+                        {% if traveller.trips_planned.count == 0 %}
+                        <p>No trips planned yet.</p>
+                        {% else %}
+                            <h5>Trips Planned:</h5>
+                            {% for trip in traveller.trips_planned.all %}
+                                <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
+                                    <p><strong><strong><i class="fa-solid fa-road"></i> {{ trip.name }} in {{ trip.get_region_display }}</strong></p>
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>  
         </div>
-    </section>
-{% endfor %}
+        {% endfor %}
+    </div>
+
+</div>
 
 {% endblock content %}

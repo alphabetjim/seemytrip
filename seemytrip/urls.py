@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# Custom error handling
+handler404 = 'travellerprofile.views.custom_404'
+handler500 = 'travellerprofile.views.custom_500'
+
 urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path('admin/', admin.site.urls),

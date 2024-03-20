@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 from django.contrib.auth.models import User
 from travellerprofile.models import Traveller
 import cloudinary
@@ -31,3 +32,15 @@ class Trip(models.Model):
 
     def __str__(self):
         return f"{self.pk}: {self.name} in {self.region} planned by {self.planner.user}"
+
+    @property
+    def passed(self):
+        return date.today()>self.endDate
+
+    @property
+    def upcoming(self):
+        return date.today()<self.startDate
+
+    @property
+    def underway(self):
+        return date.today()>self.startDate and date.today()<self.endDate
