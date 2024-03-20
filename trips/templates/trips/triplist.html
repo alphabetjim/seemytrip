@@ -73,7 +73,7 @@
                     </div>
                 </div>
             {% endif %}
-            <div class="follow row w-100 tripinfo-row">
+            <div class="row w-100 tripinfo-row">
                 <div class="col-6 flex-fill">
                     <p class="tripInfoType-p"><strong>
                         {% if trip.followers.count == 0 %}
@@ -93,13 +93,14 @@
                 </div>
                 {% if user.is_authenticated %}
                     {% if trip.planner.user != user %}
-                        <div class="row w-100 tripinfo-row">
+                        <div class="row w-100 triplist-followbuttonrow">
                             <div class="col-6 flex-fill">
                                 <form action="{% url 'follow_trip' trip.pk %}" method="POST">
                                     {% csrf_token %}
-                                    <!-- TODO: need to implement something to reflect whether user is attending -->
-                                    <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-center btn-follow">Follow</button>
-                                    <!-- May need to be in the form of a line of text under the button including *You* if attending -->
+                                    <div class="text-center tripdetail-follow">
+                                        <button type="submit" name="trip_id" value="{{ trip.id }}"
+                                             class="button btn-follow">Follow</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
