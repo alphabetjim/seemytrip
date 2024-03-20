@@ -43,6 +43,11 @@ img {
     z-index: 1;
 }
 
+/* Authorisation pages */
+.auth-container {
+    align-self: center;
+}
+
 /* Content */
 
 /* General purpose container for all pages */
@@ -58,6 +63,9 @@ img {
 
     margin: auto;
     color: #78C3FB;
+    
+    /* Positioning */
+    height: 100%;
 }
 
 /* Page-specific background classes */
@@ -83,7 +91,7 @@ img {
 
 .travellerlistitem {
     border: 1px solid black;
-    
+
 }
 
 .image-div,
@@ -107,6 +115,18 @@ img {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.login-div {
+    margin-top: 30vh;
+}
+
+.logout-div {
+    margin-top: 40vh;
+}
+
+.signup-div {
+    margin-top: 25vh;
 }
 
 .follow {
