@@ -205,6 +205,11 @@ img {
     text-align: center;
 }
 
+.tripdetail-follow {
+    padding-top: 1%;
+}
+
+
 /* Form display pages */
 .formDiv {
     width: 90%;
@@ -214,6 +219,10 @@ img {
 }
 
 /* Media Queries */
+
+@media only screen and (min-width: 600px) {
+
+}
 
 @media only screen and (min-width: 600px) {
 
