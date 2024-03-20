@@ -36,6 +36,21 @@
                         <p>{{ trip.endDate }}</p>
                     </div>
                 </div>
+                <div class="row w-100 tripinfo-row">
+                    <div class="col-6 flex-fill">
+                        <p class="tripInfoType-p"><strong>Status</strong></p>
+                    </div>
+                    <div class="col-6 flex-fill">
+                        <p>{% if trip.passed %}
+                                Completed
+                            {% elif trip.upcoming %}
+                                Upcoming
+                            {% else %}
+                                Underway
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
                 {% if trip.get_accomm_type_display|length > 0 %}
                     <div class="row w-100 tripinfo-row">
                         <div class="col-6 flex-fill">

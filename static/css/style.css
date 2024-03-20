@@ -184,6 +184,14 @@ img {
     text-align: center;
 }
 
+/* Form display pages */
+.formDiv {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
 /* Media Queries */
 
 @media only screen and (min-width: 600px) {
