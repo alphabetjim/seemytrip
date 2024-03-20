@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="background travellerlist-background travellerlist-div flex-container content-container">
+<div class="background travellerlist-background travellerlist-div content-container">
     <h1>Voyagers</h1>
     <div class="traveller-div row justify-content-center">
     {% for traveller in queryset %}
@@ -28,7 +28,7 @@
                     </div>
                     <div class="tripsPlanned">
                         {% if traveller.trips_planned.count == 0 %}
-                        <p>This traveller hasn't planned any trips yet.</p>
+                        <p>No trips planned yet.</p>
                         {% else %}
                             <h5>Trips Planned:</h5>
                             {% for trip in traveller.trips_planned.all %}
