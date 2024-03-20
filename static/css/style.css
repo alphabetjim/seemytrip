@@ -46,6 +46,43 @@ img {
 /* Authorisation pages */
 .auth-container {
     align-self: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-div {
+    margin-top: 30vh;
+}
+
+.logout-div {
+    margin-top: 40vh;
+}
+
+.signup-div {
+    margin-top: 25vh;
+}
+
+/* Error page */
+.errorpage-container {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.error-div {
+    margin-top: 24vh;
+}
+
+.error-image {
+    background-image: url('/static/images/nico-smit-MWKQ8jsnid0-unsplash.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 45vw;
+    width: 60vw;
+    max-height: 40vh;
 }
 
 /* Content */
@@ -116,23 +153,6 @@ img {
     align-self: top;
 }
 
-.auth-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.login-div {
-    margin-top: 30vh;
-}
-
-.logout-div {
-    margin-top: 40vh;
-}
-
-.signup-div {
-    margin-top: 25vh;
-}
 
 .follow {
     align-self: center;

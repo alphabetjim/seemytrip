@@ -24,3 +24,5 @@ urlpatterns = [
     path('', include('travellerprofile.urls'), name='profile_urls'),
     path('', include('trips.urls'), name='trips_urls'),
 ]
+
+handler404 = 'travellerprofile.views.custom_404'
