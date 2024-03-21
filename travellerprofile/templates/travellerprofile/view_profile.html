@@ -5,10 +5,10 @@
 
 {% block content %}
 <div class="profile-background">
-    <div class="content-background-colour content-container">
+    <div class="container content-background-colour content-container">
         <h1>{{ traveller.firstname }} {{ traveller.lastname}}</h1>
         <div class="row justify-content-center profile-content">
-            <div class="col-12 col-md-5 col-xl-5 image-div">
+            <div class="col-12 col-md-7 col-xl-6 image-div">
                 {% if traveller.profile_photo.url == "" %}
                     <img class="profile-image" src="{% static 'images/nobody.jpg' %}"
                         alt="placeholder image">

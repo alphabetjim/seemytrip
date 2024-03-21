@@ -299,7 +299,8 @@ img {
 
 /* Image sizing on detail pages */
 .profile-image {
-    height: 30vw;
+    /* height: 60vw; */
+    width: 80%;
 }
 
 /* Trip & Traveller list pages */
@@ -396,8 +397,6 @@ img {
 
 /* Media Queries */
 
-@media only screen and (min-width: 600px) {}
-
 @media only screen and (min-width: 600px) {
 
     /* Triplist */
@@ -412,4 +411,9 @@ img {
     .commentBox {
         order: 1
     }
+
+    /* Profile */
+    /* .profile-image {
+        height: 25vw;
+    } */
 }
