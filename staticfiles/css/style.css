@@ -1,7 +1,16 @@
+:root {
+    --background-color: #98838F;
+    --standout-color: #dbdada;
+    --secondary-color: #229783;
+}
+
 /* General Styling */
+html {
+    font-family: 'Cabin', sans-serif;
+}
 
 body {
-    background-color: #98838F;
+    background-color: var(--background-color);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -19,10 +28,26 @@ h3,
 h4,
 h5 {
     text-align: center;
+    color: var(--secondary-color);
 }
 
 a {
-    color: #89A6FB;
+    color: var(--standout-color);
+    font-weight: bold;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--standout-color);
+}
+
+/* Text Colour Class */
+.text-standout {
+    color: var(--standout-color);
 }
 
 /* Avoid image distortion */
@@ -41,6 +66,25 @@ img {
     width: 100%;
     /* Full width */
     z-index: 1;
+
+    background-color: var(--background-color);
+    color: var(--standout-color);
+}
+
+/* override default navbar font colour */
+.nav-link,
+.navbar-text {
+    color: var(--standout-color) !important;
+}
+
+.nav-link:hover,
+.active {
+    text-decoration: underline;
+}
+
+/* fix footer link colour display */
+.footer a {
+    color: var(--standout-color);
 }
 
 /* Authorisation pages */
@@ -100,7 +144,7 @@ img {
 
     margin: auto;
     color: #78C3FB;
-    
+
     /* Positioning */
     height: 100%;
 }
@@ -113,7 +157,7 @@ img {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 90vh;
+    height: 84vh;
 
     display: flex;
     align-items: center;
@@ -123,7 +167,7 @@ img {
 
 .homepage-links {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -136,17 +180,26 @@ img {
     height: 8vh;
     width: 10vw;
     min-width: 180px;
-    background-color: #16e0bd;
+    background-color: var(--secondary-color);
     margin: 10px 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 5px;
+
+    border-radius: 1.5rem;
+}
+
+.homepage-link:hover {
+    background-color: var(--background-color);
+    color: var(--standout-color);
+    box-shadow: 0px 0px 10px var(--standout-color);
 }
 
 .home-content-container {
     /* From https://css.glass */
-    /* background: rgba(221, 213, 213, 0.65); */
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(221, 213, 213, 0.65);
+    /* background: rgba(0, 0, 0, 0.45); */
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
@@ -155,7 +208,7 @@ img {
 
     margin: auto;
     color: #78C3FB;
-    
+
     /* Positioning */
     height: 60%;
     width: 40%;
@@ -272,6 +325,7 @@ img {
 .tripdetail-itinerary {
     max-width: 60%;
 }
+
 .tripdetail-itinerary p {
     text-align: center;
     width: 90%;
@@ -282,6 +336,19 @@ img {
     padding-top: 1%;
 }
 
+.tripjournal {
+    display: flex;
+    /* align-self: center; */
+}
+
+.tripjournal p {
+    margin: auto;
+}
+
+.journal-entry {
+    margin: auto;
+}
+
 /* Trip day page */
 .trip-day-image {
     height: 30vw;
@@ -290,6 +357,7 @@ img {
 .tripday-body {
     max-width: 30%;
 }
+
 .tripday-body p {
     text-align: center;
     width: 90%;
@@ -306,9 +374,7 @@ img {
 
 /* Media Queries */
 
-@media only screen and (min-width: 600px) {
-
-}
+@media only screen and (min-width: 600px) {}
 
 @media only screen and (min-width: 600px) {
 

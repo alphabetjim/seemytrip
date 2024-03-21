@@ -1,7 +1,11 @@
 # seemytrip
 
+# UX Design
+## Font
+The [Cabin](https://fonts.google.com/specimen/Cabin) font was chosen for this site, both as a close approximation to the Transport font used on UK road signs and because it is an easily legible, user-friendly font.
 
 # Credits
+
 
 ## Similar Sites
 [Travellers point](https://www.travellerspoint.com/forum.cfm).
