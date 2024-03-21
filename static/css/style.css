@@ -245,7 +245,8 @@ img {
 }
 
 .image-div,
-.info-div {
+.info-div,
+.travellerinfo-div {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -257,7 +258,7 @@ img {
     padding: 10px;
 }
 
-.info-div div {
+.travellerinfo-div div {
     box-shadow: 0 0px 8px rgba(0, 0, 0, 0.3);
     border-radius: 0.5rem;
     padding: 10px;
