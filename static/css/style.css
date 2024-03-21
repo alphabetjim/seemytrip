@@ -282,6 +282,19 @@ img {
     padding-top: 1%;
 }
 
+.tripjournal {
+    display: flex;
+    /* align-self: center; */
+}
+
+.tripjournal p{
+    margin: auto;
+}
+
+.journal-entry {
+    margin: auto;
+}
+
 /* Trip day page */
 .trip-day-image {
     height: 30vw;

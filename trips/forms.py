@@ -33,4 +33,4 @@ class TripDayForm(forms.ModelForm):
 
     class Meta:
         model = TripDay
-        fields = ('title', 'body', 'day_photo', 'day_date',)
+        fields = ('title', 'day_date','locations','excerpt', 'body', 'day_photo',)

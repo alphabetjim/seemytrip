@@ -112,10 +112,11 @@
                         </div>    
                     {% else %}
                         {% for entry in trip.journal_entries.all %}
-                        <div class="col-6 text-center">
+                        <div class="col-6 text-center journal-entry">
                             <a href="{% url 'trip_day' entry.trip.pk entry.pk %}">
                                 <p><strong>{{ entry.title }}</strong></p>
                             </a>
+                            <p>{{ entry.excerpt }}</p>
                         </div>
                         {% endfor %}
                     {% endif %}

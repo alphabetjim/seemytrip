@@ -54,6 +54,8 @@ class TripDay(models.Model):
     title = models.CharField(max_length=100, unique=True)
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE, related_name="journal_entries")
     author = models.ForeignKey(Traveller, on_delete=models.CASCADE, related_name="author")
+    excerpt = models.CharField(max_length=200, blank=True)
+    locations = models.CharField(max_length=200, blank=True)
     body = models.TextField(max_length=1000)
     day_photo = models.ImageField(upload_to='tripDayImages/', blank=True, default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
