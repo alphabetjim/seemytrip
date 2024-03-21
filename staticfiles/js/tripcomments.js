@@ -31,7 +31,6 @@ for (let button of editButtons) {
 }
 
 // Delete event listeners
-console.log(window.location.pathname)
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
       let tripcommentId = e.target.getAttribute("comment_id");
