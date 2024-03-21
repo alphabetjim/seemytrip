@@ -321,6 +321,14 @@ img {
     text-align: right;
 }
 
+/* Traveller profile page */
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
 /* Trip detail page*/
 .tripdetail-content .card {
     background-color: #16e0bd;
@@ -353,7 +361,6 @@ img {
 
 .tripjournal {
     display: flex;
-    /* align-self: center; */
 }
 
 .tripjournal p {
