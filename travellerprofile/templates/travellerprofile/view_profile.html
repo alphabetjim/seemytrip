@@ -17,14 +17,14 @@
                     alt="{{ traveller.firstname }} {{ traveller.lastname}}">
                 {% endif %}
             </div>
-            <div class="col-12 col-md-5 col-xl-5 info-div">
-                <div class="bio">
+            <div class="col-12 col-md-5 col-xl-5 info-div profile-info">
+                <div class="bio text-center">
                     <h4>About</h4>
                     <p>{{ traveller.bio }}</p>
                 </div>
             </div>
             <h4>Trips</h4>
-            <div class="col-12 col-md-5 col-xl-5 info-div">
+            <div class="col-12 col-md-5 col-xl-5 info-div profile-info">
                 {% if traveller.trips_planned.count == 0 %}
                 <p><strong>It looks as though you haven't planned any trips yet.</strong></p>
                 {% else %}
@@ -37,14 +37,14 @@
                 {% endif %}
             </div>
             {% if own_profile %}
-                <div class="col-12 col-md-5 col-xl-5 info-div">
+                <div class="col-12 col-md-5 col-xl-5 info-div profile-info">
                     <a href="{% url 'create_trip' %}"><strong><i class="fa-regular fa-map"></i> Plan a Trip</strong></a>
                 </div>
             {% endif %}
         </div>
         {% if own_profile %}
-            <div class="row">
-                <div class="col-12 info-div">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-5 col-xl-5 info-div profile-info">
                     <a href="{% url 'edit_traveller' %}"><strong>Edit or Delete Profile</strong></a>
                 </div>
             </div>    

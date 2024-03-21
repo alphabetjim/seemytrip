@@ -303,6 +303,10 @@ img {
     width: 80%;
 }
 
+.profile-info {
+    /* Need something here */
+}
+
 /* Trip & Traveller list pages */
 
 
@@ -328,6 +332,10 @@ img {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+.profile-image-div {
+
 }
 
 /* Trip detail page*/
