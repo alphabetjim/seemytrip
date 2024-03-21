@@ -9,6 +9,18 @@
                 <h1>Welcome, Trailblazer!</h1>
                 <div class="homepage-links">
                     <!-- <div class="row"> -->
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'view_traveller' %}">
+                            <div class="homepage-link">
+                                View Profile
+                            </div>
+                        </a>
+                        <a href="{% url 'create_trip' %}">
+                            <div class="homepage-link">
+                                Plan Adventure
+                            </div>
+                        </a>
+                    {% else %}
                         <a href="{% url 'account_login' %}">
                             <div class="homepage-link">
                                 Log in
@@ -19,6 +31,7 @@
                                 Start your adventure
                             </div>
                         </a>
+                    {% endif %}
                     <!-- </div> -->
                     <!-- <div class="row"> -->
                         <a href="{% url 'triplist' %}">
