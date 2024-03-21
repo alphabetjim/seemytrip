@@ -76,6 +76,16 @@
                             </div>
                         </div>
                     {% endif %}
+                    {% if trip.excerpt|length > 0 %}
+                        <div class="row w-100 tripinfo-row">
+                            <div class="col-6 flex-fill">
+                                <p class="tripInfoType-p"><strong>Summary</strong></p>
+                            </div>
+                            <div class="col-6 flex-fill">
+                                <p>{{ trip.excerpt }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
                     <div class="row w-100 tripinfo-row">
                         <div class="col-6 flex-fill">
                             <p class="tripInfoType-p"><strong>

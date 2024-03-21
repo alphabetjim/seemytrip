@@ -17,7 +17,7 @@ class TripForm(forms.ModelForm):
 
     class Meta:
         model = Trip
-        fields = ('name', 'region', 'accomm_type', 'itinerary', 
+        fields = ('name', 'region', 'excerpt', 'accomm_type', 'itinerary', 
             'interests', 'startDate', 'endDate', 'trip_photo',)
 
 

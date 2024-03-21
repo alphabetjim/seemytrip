@@ -19,6 +19,7 @@ class Trip(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
     planner = models.ForeignKey(Traveller, on_delete=models.CASCADE, related_name="trips_planned")
+    excerpt = models.CharField(max_length=150, blank=True)
     itinerary = models.TextField(max_length=1000)
     region = models.IntegerField(choices=REGIONS, default=0)
     accomm_type = models.IntegerField(choices=ACCOMM_OPTIONS, blank=True)

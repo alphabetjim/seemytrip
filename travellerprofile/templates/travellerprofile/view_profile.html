@@ -33,6 +33,7 @@
                     <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
                         <strong><i class="fa-solid fa-road"></i> {{ trip.name }} in {{ trip.get_region_display }}</strong>
                     </a>
+                    <p>{{ trip.excerpt }}</p>
                 {% endfor %}
             {% endif %}
         </div>
