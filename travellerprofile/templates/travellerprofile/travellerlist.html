@@ -3,21 +3,20 @@
 
 {% block content %}
 
-<div class="background travellerlist-background travellerlist-div content-container">
+<div class="content-background-colour content-container">
     <h1>Voyagers</h1>
-    <div class="traveller-div row justify-content-center">
-    {% for traveller in queryset %}
-        <div class="col-12 col-md-6 travellerlistitem">
+    <div class="traveller-div row justify-content-center g-0">
+        {% for traveller in queryset %}
+        <div class="col-12 col-md-5 travellerlistitem">
             <a href="{% url 'travellerprofile' traveller.pk %}" class="trip-link">
                 <h3>{{traveller.firstname}} {{traveller.lastname}}</h3>
             </a>
-            <div class="row">
+            <div class="row g-0">
                 <div class="col-6 image-div">
                     {% if traveller.profile_photo.url == "" %}
-                    <img class="travellerlistitem-image" src="{% static 'images/nobody.jpg' %}"
-                        alt="placeholder image">
+                    <img class="travellerlistitem-image" src="{% static 'images/nobody.jpg' %}" alt="placeholder image">
                     {% else %}
-                    <img class="object-fit-cover travellerlistitem-image" src=" {{ traveller.profile_photo.url }}" 
+                    <img class="object-fit-contain travellerlistitem-image" src=" {{ traveller.profile_photo.url }}"
                         alt="{{ traveller.firstname }} {{ traveller.lastname}}">
                     {% endif %}
                 </div>
@@ -30,16 +29,17 @@
                         {% if traveller.trips_planned.count == 0 %}
                         <p>No trips planned yet.</p>
                         {% else %}
-                            <h5>Trips Planned:</h5>
-                            {% for trip in traveller.trips_planned.all %}
-                                <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
-                                    <p><strong><strong><i class="fa-solid fa-road"></i> {{ trip.name }} in {{ trip.get_region_display }}</strong></p>
-                                </a>
-                            {% endfor %}
+                        <h5>Trips Planned:</h5>
+                        {% for trip in traveller.trips_planned.all %}
+                        <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
+                            <p><strong><i class="fa-solid fa-road"></i> 
+                                {{ trip.name }} in {{ trip.get_region_display }}</strong></p>
+                        </a>
+                        {% endfor %}
                         {% endif %}
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
         {% endfor %}
     </div>
