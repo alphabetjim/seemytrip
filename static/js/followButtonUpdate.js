@@ -16,10 +16,9 @@ if (loginStatusString.includes('logged in')){
     const uName = loginStatusString.substring(uNameIndex)
     
     const followButtons = document.getElementsByClassName('btn-follow')
+    const followersParas = document.getElementsByClassName('followersP')
     for (let i=0; i<followButtons.length; i++) {
-        let followP = document.getElementById(`followers_${i+1}`)
-        let followText = followP.innerText
-        console.log(followP.innerText)
+        let followText = followersParas[i].innerText
         if (followText.includes(uName)){
             followButtons[i].innerText = "Following"
         }

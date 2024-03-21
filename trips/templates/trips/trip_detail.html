@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-6 flex-fill 
                         {% if trip.followers.count == 0 %}d-none{%endif%}">
-                        <p id="followers_{{ trip.id }}">
+                        <p class="followersP">
                             {% for follower in trip.followers.all %}
                                 {{ follower.username }} 
                             {% endfor %}
@@ -243,4 +243,6 @@
 {% block scripts %}
 <!-- Script for comment edit/delete functionality -->
 <script src="{% static 'js/tripcomments.js' %}"></script>
+<!-- Script for follow button display update -->
+<script src="{% static 'js/followButtonUpdate.js' %}"></script>
 {% endblock scripts%}

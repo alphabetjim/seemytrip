@@ -87,7 +87,7 @@
                     </div>
                     <div class="col-6 flex-fill 
                         {% if trip.followers.count == 0 %}d-none{%endif%}">
-                        <p id="followers_{{ trip.id }}">
+                        <p class="followersP">
                             {% for follower in trip.followers.all %}
                                 {{ follower.username }} 
                             {% endfor %}
