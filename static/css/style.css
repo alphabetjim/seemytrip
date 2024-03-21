@@ -227,21 +227,28 @@ img {
 }
 
 .triplist-followbuttonrow {
+    margin-top: auto;
     margin-left: auto;
     margin-right: auto;
 }
 
+
+
 .traveller-div {
-    /*  */
     padding: auto 10px;
 }
 
-.travellerlistitem {
+.travellerlistitem,
+.triplistitem {
     /* border: 1px solid black; */
     margin: 10px;
     padding: 10px;
     box-shadow: 0 0px 8px rgba(0, 0, 0, 0.3);
     border-radius: 0.5rem;
+}
+
+.triplistcontent {
+    padding: 10px 0;
 }
 
 .image-div,
