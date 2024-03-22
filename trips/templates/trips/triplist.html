@@ -14,7 +14,7 @@
                 <div class="col-12 col-md-6 col-lg-12">
                     <div class="image-div">
                         {% if trip.trip_photo.url == "" %}
-                            <img class="triplistitem-image" src="{% static 'images/nobody.jpg' %}"
+                            <img class="triplistitem-image" src="{% static 'images/nobody.webp' %}"
                                 alt="placeholder image">
                         {% else %}
                             <img class="triplistitem-image" src=" {{ trip.trip_photo.url }}" 
