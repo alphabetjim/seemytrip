@@ -1,7 +1,7 @@
 :root {
     --background-color: #98838F;
     --standout-color: #dbdada;
-    --secondary-color: #229783;
+    --secondary-color: #22564d;
     --secondary-standout-color: #434141;
 }
 
@@ -90,6 +90,10 @@ img {
 /* fix footer link colour display */
 .footer a {
     color: var(--standout-color);
+}
+
+.footer p {
+    width:auto;
 }
 
 /* Authorisation pages */
