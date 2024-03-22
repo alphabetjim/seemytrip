@@ -103,7 +103,9 @@
                     </div>
                     <div class="row w-100 tripdetail-itinerary">
                         <h4>Itinerary</h4>
-                        <p>{{ trip.itinerary }}</p>
+                        <div>
+                            <p>{{ trip.itinerary | linebreaks }}</p>
+                        </div>
                     </div>
                     <h4 class="journal-heading">Journal</h4>
                     <div class="row tripjournal justify-content-center">
