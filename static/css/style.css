@@ -100,16 +100,27 @@ img {
     flex-direction: column;
 }
 
+.auth-container a {
+    color: var(--secondary-standout-color)
+}
+
 .login-div {
     margin-top: 30vh;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .logout-div {
-    margin-top: 40vh;
+    margin-top: 35vh;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
 }
 
 .signup-div {
-    margin-top: 25vh;
+    margin-top: 18vh;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 /* Error page */
