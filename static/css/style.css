@@ -359,6 +359,10 @@ img {
     background-color: var(--secondary-standout-color);
 }
 
+.tripinfo-row {
+    padding-top: 10px;
+}
+
 .card-body,
 .card-body button,
 .card-body p,
@@ -438,12 +442,18 @@ img {
 
 .tripday-body {
     max-width: 30%;
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
+    margin: 20px auto;
 }
 
 .tripday-body p {
     text-align: center;
     width: 90%;
     margin: auto;
+}
+
+.tripday-link {
+    margin: 15px auto;
 }
 
 /* Form display pages */
