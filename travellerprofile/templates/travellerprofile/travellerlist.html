@@ -14,7 +14,7 @@
             <div class="row g-0">
                 <div class="col-6 image-div">
                     {% if traveller.profile_photo.url == "" %}
-                    <img class="travellerlistitem-image" src="{% static 'images/nobody.jpg' %}" alt="placeholder image">
+                    <img class="travellerlistitem-image" src="{% static 'images/nobody.webp' %}" alt="placeholder image">
                     {% else %}
                     <img class="object-fit-contain travellerlistitem-image" src=" {{ traveller.profile_photo.url }}"
                         alt="{{ traveller.firstname }} {{ traveller.lastname}}">

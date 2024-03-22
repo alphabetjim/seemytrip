@@ -10,7 +10,7 @@
         <div class="row justify-content-center profile-content">
             <div class="col-12 col-md-7 col-xl-6 image-div">
                 {% if traveller.profile_photo.url == "" %}
-                    <img class="profile-image" src="{% static 'images/nobody.jpg' %}"
+                    <img class="profile-image" src="{% static 'images/nobody.webp' %}"
                         alt="placeholder image">
                 {% else %}
                 <img class="object-fit-cover profile-image" src=" {{ traveller.profile_photo.url }}"

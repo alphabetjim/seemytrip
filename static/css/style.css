@@ -143,7 +143,7 @@ img {
 
 
 .error-image {
-    background-image: url('/static/images/nico-smit-MWKQ8jsnid0-unsplash.jpg');
+    background-image: url('/static/images/nico-smit-MWKQ8jsnid0-unsplash.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -188,9 +188,7 @@ img {
 
 /* Page-specific background classes */
 .home-background {
-    /* background-image: url('https://www.serre-chevalier.com/sites/default/files/styles/1920_720/public/2022-03/thibaut-blais-serre-chevalier-vtt-5.jpg?itok=A8dOpupi');
-     */
-    background-image: url('/static/images/z-TrhLCn1abMU-unsplash.jpg');
+    background-image: url('/static/images/z-TrhLCn1abMU-unsplash.webp');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
