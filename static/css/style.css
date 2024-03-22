@@ -233,7 +233,11 @@ img {
     margin-right: auto;
 }
 
-
+.link-follow {
+    border: 1px groove var(--secondary-standout-color);
+    padding: 10px;
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
+}
 
 .traveller-div {
     padding: auto 10px;
@@ -369,6 +373,10 @@ img {
 
 .tripdetail-ud div {
     margin: 10px auto;
+}
+
+.followbuttondiv {
+    margin: 20px auto;
 }
 
 .card-body,

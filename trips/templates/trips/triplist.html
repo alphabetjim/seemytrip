@@ -112,7 +112,7 @@
             {% if user.is_authenticated %}
                 {% if trip.planner.user != user %}
                     <div class="row w-100 triplist-followbuttonrow">
-                        <div class="col-6 flex-fill text-center">
+                        <div class="col-6 flex-fill text-center followbuttondiv">
                             <a class="link-follow" id="{{trip.pk}}" href="{% url 'follow_trip' trip.pk %}">
                                 Follow
                             </a>

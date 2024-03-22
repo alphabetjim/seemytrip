@@ -94,7 +94,7 @@
                         </div>
                         <div class="col-6 flex-fill 
                             {% if trip.followers.count == 0 %}d-none{%endif%}">
-                            <p class="followersP">
+                            <p class="followersP" id="followers_{{trip.pk}}">
                                 {% for follower in trip.followers.all %}
                                     {{ follower.username }} 
                                 {% endfor %}
@@ -125,15 +125,11 @@
                     </div>
                     {% if user.is_authenticated %}
                         {% if trip.planner.user != user %}
-                            <div class="row w-100">
-                                <div class="col-6 flex-fill">
-                                    <form action="{% url 'follow_trip' trip.pk %}" method="POST">
-                                        {% csrf_token %}
-                                        <div class="text-center tripdetail-follow">
-                                            <button type="submit" name="trip_id" value="{{ trip.id }}" 
-                                                class="button btn-follow">Follow</button>
-                                        </div>
-                                    </form>
+                            <div class="row w-100 triplist-followbuttonrow">
+                                <div class="col-6 flex-fill text-center followbuttondiv">
+                                    <a class="link-follow" id="{{trip.pk}}" href="{% url 'follow_trip' trip.pk %}">
+                                        Follow
+                                    </a>
                                 </div>
                             </div>
                         {% endif %}
