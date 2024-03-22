@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="profile-background">
-    <div class="container content-background-colour content-container">
+    <div class="container content-background-colour content-container profile-container">
         <h1>{{ traveller.firstname }} {{ traveller.lastname}}</h1>
         <div class="row justify-content-center profile-content">
             <div class="col-12 col-md-7 col-xl-6 image-div">
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <h4>Trips</h4>
-            <div class="col-12 col-md-5 col-xl-5 info-div profile-info profile-trips-planned">
+            <div class="col-10 col-md-5 col-xl-5 info-div profile-info profile-trips-planned">
                 {% if traveller.trips_planned.count == 0 %}
                 <p><strong>It looks as though you haven't planned any trips yet.</strong></p>
                 {% else %}
@@ -36,16 +36,14 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            {% if own_profile %}
-                <div class="col-12 col-md-5 col-xl-5 info-div profile-info">
-                    <a href="{% url 'create_trip' %}"><strong><i class="fa-regular fa-map"></i> Plan a Trip</strong></a>
-                </div>
-            {% endif %}
         </div>
         {% if own_profile %}
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-5 col-xl-5 info-div profile-info">
-                    <a href="{% url 'edit_traveller' %}"><strong>Edit or Delete Profile</strong></a>
+            <div class="row justify-content-center">    
+                <div class="col-12 info-div profile-info profile-ud-div">
+                    <a href="{% url 'create_trip' %}" class="profile-ud"><strong><i class="fa-regular fa-map"></i> Plan a Trip</strong></a>
+                </div>
+                <div class="col-12 info-div profile-info profile-ud-div">
+                    <a href="{% url 'edit_traveller' %}" class="profile-ud"><strong>Edit or Delete Profile</strong></a>
                 </div>
             </div>    
         {% endif %}
