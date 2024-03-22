@@ -87,10 +87,12 @@
                         </div>
                     {% endif %}
                     <div class="row w-100 tripinfo-row">
-                        <div class="col-6 flex-fill">
-                            <p class="tripInfoType-p"><strong>
+                        <div class="col-6 flex-fill text-center">
+                            <p class='text-center'><strong>
                                 {% if trip.followers.count == 0 %}
-                                    Be the first to follow this trip!
+                                    {% if trip.planner.user != user %}
+                                        Be the first to follow this trip!
+                                    {% endif %}
                                 {% else %}
                                     {{ trip.followers.count }} Following:
                                 {% endif %}
@@ -98,7 +100,7 @@
                         </div>
                         <div class="col-6 flex-fill 
                             {% if trip.followers.count == 0 %}d-none{%endif%}">
-                            <p class="followersP">
+                            <p class="followersP" id="followers_{{trip.pk}}">
                                 {% for follower in trip.followers.all %}
                                     {{ follower.username }} 
                                 {% endfor %}
@@ -110,14 +112,10 @@
             {% if user.is_authenticated %}
                 {% if trip.planner.user != user %}
                     <div class="row w-100 triplist-followbuttonrow">
-                        <div class="col-6 flex-fill">
-                            <form action="{% url 'follow_trip' trip.pk %}" method="POST">
-                                {% csrf_token %}
-                                <div class="text-center triplist-follow">
-                                    <button type="submit" name="trip_id" value="{{ trip.id }}"
-                                        class="button btn-follow">Follow</button>
-                                </div>
-                            </form>
+                        <div class="col-6 flex-fill text-center">
+                            <a class="link-follow" id="{{trip.pk}}" href="{% url 'follow_trip' trip.pk %}">
+                                Follow
+                            </a>
                         </div>
                     </div>
                 {% endif %}

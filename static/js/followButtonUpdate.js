@@ -14,13 +14,32 @@ const loginStatusString = loginStatus.innerText
 if (loginStatusString.includes('logged in')){
     let uNameIndex = loginStatusString.indexOf('as') + 3
     const uName = loginStatusString.substring(uNameIndex)
-    
-    const followButtons = document.getElementsByClassName('btn-follow')
+    console.log(uName)
+    const followButtons = document.getElementsByClassName('link-follow')
     const followersParas = document.getElementsByClassName('followersP')
-    for (let i=0; i<followButtons.length; i++) {
+    for (para of followersParas){
+        console.log(para.innerText)
+    }
+    let underscoreIndex = followersParas[0].id.indexOf('_')+1
+    let i=0;
+    let followButtonId=0;
+    while (i<followersParas.length) {
+        let id = followButtons[followButtonId].id
+        console.log(id)
+        
         let followText = followersParas[i].innerText
-        if (followText.includes(uName)){
-            followButtons[i].innerText = "Following"
+        let followersParasId = followersParas[i].id.substring(underscoreIndex)
+
+        console.log(`${id} vs ${followersParasId}: ${id==followersParasId}`)
+        console.log(followText)
+        if(id == followersParasId){
+
+            if (followText.includes(uName)){
+                followButtons[followButtonId].innerText = "Following"
+            }
+            followButtonId++
         }
+        i++
+        
     }
 }
