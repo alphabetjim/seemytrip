@@ -442,7 +442,8 @@ img {
 
 .tripdetail-content p,
 .tripdetail-content a,
-.triplist-followbuttonrow a {
+.triplist-followbuttonrow a,
+.linkcontainer a {
     color: var(--secondary-standout-color);
 }
 
