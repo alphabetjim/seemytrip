@@ -344,7 +344,34 @@ img {
 
 /* Trip detail page*/
 .tripdetail-content .card {
-    background-color: #16e0bd;
+    background-color: var(--secondary-standout-color);
+}
+
+.card-body,
+.card-body button,
+.card-body p,
+.comments p {
+    color: var(--standout-color)!important;
+}
+
+.comments {
+    border: 1px solid var(--standout-color);
+    margin: 3px 0;
+    border-radius: 1.5rem;
+    padding: 5px 0;
+}
+
+.comments-div {
+    padding: 1rem 1rem;
+}
+
+.standout-col {
+    color: var(--standout-color);
+}
+
+.tripdetail-content p,
+.tripdetail-content a {
+    color: var(--secondary-standout-color);
 }
 
 .image-detail-div {
@@ -378,6 +405,7 @@ img {
 
 .tripjournal p {
     margin: auto;
+    text-align: center;
 }
 
 .journal-entry {
