@@ -447,11 +447,17 @@ img {
     color: var(--secondary-standout-color);
 }
 
-.image-detail-div {
+.image-detail-div,
+.tripday-image-div {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
+    margin: auto;
+}
+
+.tripday-image-div {
+    max-width: 80%;
 }
 
 .linkcontainer {
@@ -462,11 +468,13 @@ img {
     height: 35vw;
 }
 
-.tripdetail-itinerary {
-    max-width: 60%;
+.tripdetail-itinerary,
+.tripday-body {
+    max-width: 80%;
+    width:fit-content;
 }
 
-.tripdetail-itinerary p {
+.tripdetail-itinerary div{
     text-align: center;
     width: 90%;
     margin: auto;
@@ -498,11 +506,12 @@ img {
 
 /* Trip day page */
 .trip-day-image {
-    height: 30vw;
+    /* height: 30vw; */
+    
 }
 
 .tripday-body {
-    max-width: 30%;
+    max-width: 70%;
     box-shadow: 0px 0px 10px var(--secondary-standout-color);
     margin: 20px auto;
 }
