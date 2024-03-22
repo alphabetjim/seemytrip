@@ -42,13 +42,6 @@
             <a href="{% url 'edit_trip_day' trip_day.trip.pk trip_day.pk %}">
                 Edit or Delete Journal Entry
             </a>
-            <!-- Edit trip functionality -->
-            <!-- <form action="{% url 'edit_trip_day' trip_day.trip.pk trip_day.pk %}" method="GET">
-                {% csrf_token %}
-                <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
-                    Edit or Delete Journal Entry
-                </button>
-            </form> -->
         </div>
     </div>
     {% endif %}

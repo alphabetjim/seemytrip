@@ -363,6 +363,14 @@ img {
     padding-top: 10px;
 }
 
+.tripdetail-ud {
+    padding-top: 10px;
+}
+
+.tripdetail-ud div {
+    margin: 10px auto;
+}
+
 .card-body,
 .card-body button,
 .card-body p,
