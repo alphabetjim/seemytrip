@@ -487,6 +487,10 @@ img {
     margin-top: 10px;
 }
 
+.journal-entry {
+    width:fit-content;
+}
+
 .tripjournal p {
     margin: auto;
     text-align: center;

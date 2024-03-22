@@ -466,7 +466,7 @@ img {
     max-width: 60%;
 }
 
-.tripdetail-itinerary p {
+.tripdetail-itinerary div {
     text-align: center;
     width: 90%;
     margin: auto;
@@ -485,6 +485,10 @@ img {
 
 .journal-heading {
     margin-top: 10px;
+}
+
+.journal-entry {
+    width:fit-content;
 }
 
 .tripjournal p {
