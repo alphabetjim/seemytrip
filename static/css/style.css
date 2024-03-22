@@ -266,7 +266,8 @@ img {
 }
 
 .link-follow,
-.profile-ud {
+.profile-ud,
+.backlink {
     border: 1px groove var(--secondary-standout-color);
     padding: 10px;
     box-shadow: 0px 0px 10px var(--secondary-standout-color);
@@ -450,6 +451,10 @@ img {
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
+}
+
+.linkcontainer {
+    margin-top: 30px;
 }
 
 .trip-image {

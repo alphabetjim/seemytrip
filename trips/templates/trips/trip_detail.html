@@ -138,19 +138,26 @@
             </div>
         </div>
         {% if trip.planner.user == user %}
-        <div class="row justify-content-center tripdetail-ud">
-            <div class="col-12 col-md-6 text-center">
-                <a href="{% url 'create_trip_day' trip.pk %}" class="tripday-link">
+        <div class="row justify-content-center g-0">
+            <div class="col-12 col-md-6 text-center linkcontainer">
+                <a href="{% url 'create_trip_day' trip.pk %}" class="tripday-link backlink">
                     Add Journal Entry
                 </a>
             </div>
-            <div class="col-12 col-md-6 justify-content-center text-center">
-                <a href="{% url 'edit_trip' trip.pk %}">
+            <div class="col-12 col-md-6 justify-content-center text-center linkcontainer">
+                <a href="{% url 'edit_trip' trip.pk %}" class ="backlink">
                     Edit or Delete Trip
                 </a>               
             </div>
         </div>
         {% endif %}
+        <div class="row justify-content-center g-0">
+            <div class="col-12 col-md-6 text-center linkcontainer">
+                <a href="{% url 'triplist' %}" class="tripday-link backlink">
+                    Back to Trips
+                </a>
+            </div>
+        </div>
         <div class="row trip-comments">
             <!-- Creating New Comments -->
             <div class="col-md-4 card mb-4 mt-3 commentBox">
