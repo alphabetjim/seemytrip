@@ -486,10 +486,6 @@ img {
     text-align: center;
 }
 
-.journal-entry {
-    /* margin: 10px auto; */
-}
-
 /* Trip day page */
 .trip-day-image {
     height: 30vw;
@@ -534,5 +530,10 @@ img {
     /* Triplist */
     .commentBox {
         order: 1
+    }
+
+    /* Profile */
+    .profile-container {
+        margin-top: 5vh;
     }
 }
