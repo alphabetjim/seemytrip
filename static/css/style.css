@@ -2,6 +2,7 @@
     --background-color: #98838F;
     --standout-color: #dbdada;
     --secondary-color: #229783;
+    --secondary-standout-color: #434141;
 }
 
 /* General Styling */
@@ -303,9 +304,12 @@ img {
     width: 80%;
 }
 
-.profile-info {
-    /* Need something here */
+.profile-info a,
+.profile-info p {
+    color: #434141;
 }
+
+
 
 /* Trip & Traveller list pages */
 
