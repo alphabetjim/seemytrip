@@ -211,6 +211,10 @@ img {
     margin: auto;
 }
 
+.homepage-links a:hover{
+    text-decoration: none;
+}
+
 .homepage-link {
     height: 8vh;
     width: 10vw;
