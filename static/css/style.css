@@ -300,7 +300,6 @@ img {
 
 /* Image sizing on detail pages */
 .profile-image {
-    /* height: 60vw; */
     width: 80%;
 }
 
@@ -309,7 +308,16 @@ img {
     color: #434141;
 }
 
+.bio p {
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
+    padding: 5px 10px;
+}
 
+.profile-trips-planned {
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
+    margin-bottom: 15px;
+    padding: 5px 10px;
+}
 
 /* Trip & Traveller list pages */
 
