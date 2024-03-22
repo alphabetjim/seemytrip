@@ -24,10 +24,11 @@
                         alt="{{ trip_day.title}}">
                 {% endif %}
             </div>
+        </div>
     </div>
     <div class="tripday-body">
         <div>
-            <p>{{ trip_day.body|linebreaks }}</p>
+            {{ trip_day.body|linebreaks }}
         </div>
     </div>
     {% if trip_day.author.user == user %}
