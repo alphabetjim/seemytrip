@@ -1,6 +1,16 @@
 # seemytrip
+See My Trip is a website that aims to inspire would-be roadtrippers or holiday tourers. Users can register as Voyagers by creating a profile, allowing them to post a planned trip giving details of when and where they'll be going and their mode of transport. Other users can follow the trip and comment - either to give recommendations for stops or just to show their enthusiasm.
+
+Voyagers can post trip journal updates, which appear linked to the relevant trip and allow other site users to see how their trip is going. The live link is here: [See My Trip](https://seemytripcapstone-0e4622862850.herokuapp.com/).
+
+<!-- Mock-up here -->
+
+## Table of Contents
+
+
 
 # UX Design
+
 ## Font
 The [Cabin](https://fonts.google.com/specimen/Cabin) font was chosen for this site, both as a close approximation to the Transport font used on UK road signs and because it is an easily legible, user-friendly font.
 
