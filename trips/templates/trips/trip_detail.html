@@ -104,7 +104,7 @@
                     <div class="row w-100 tripdetail-itinerary">
                         <h4>Itinerary</h4>
                         <div>
-                            <p>{{ trip.itinerary | linebreaks }}</p>
+                            {{ trip.itinerary | linebreaks }}
                         </div>
                     </div>
                     <br>
@@ -204,9 +204,9 @@
                         {% endif %}
                         {% if user.is_authenticated and comment.author == user %}
                         <button class="btn btn-edit"
-                        comment_id="{{ comment.id }}">Edit</button>
+                        id="edit_{{ comment.id }}">Edit</button>
                         <button class="btn btn-delete"
-                        comment_id="{{ comment.id }}">Delete</button>
+                        id="delete_{{ comment.id }}">Delete</button>
                     {% endif %}
                     </div>
                 <!-- Our for loop ends here -->
@@ -246,6 +246,10 @@
 {% block scripts %}
 <!-- Script for comment edit/delete functionality -->
 <script src="{% static 'js/tripcomments.js' %}"></script>
-<!-- Script for follow button display update -->
-<script src="{% static 'js/followButtonUpdate.js' %}"></script>
+{% if user.is_authenticated %}
+    {% if trip.planner.user != user %}
+        <!-- Script for follow button display update -->
+        <script src="{% static 'js/followButtonUpdate.js' %}"></script>
+    {% endif %}
+{% endif %}
 {% endblock scripts%}

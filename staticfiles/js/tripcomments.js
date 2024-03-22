@@ -21,19 +21,23 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 // Edit event listeners
 
 for (let button of editButtons) {
-    button.addEventListener("click", (e) => {
-        let tripcommentId = e.target.getAttribute("comment_id");
-        let tripcommentContent = document.getElementById(`comment${tripcommentId}`).innerText;
-        commentText.value = tripcommentContent;
-        submitButton.innerText = "Update";
-        commentForm.setAttribute("action", `edit_tripcomment/${tripcommentId}`);
+      button.addEventListener("click", (e) => {
+      let buttonId = e.target.id;
+      let underscoreIndex = buttonId.indexOf('_')+1;
+      let tripcommentId = buttonId.substring(underscoreIndex);
+      let tripcommentContent = document.getElementById(`comment${tripcommentId}`).innerText;
+      commentText.value = tripcommentContent;
+      submitButton.innerText = "Update";
+      commentForm.setAttribute("action", `edit_tripcomment/${tripcommentId}`);
     });
 }
 
 // Delete event listeners
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
-      let tripcommentId = e.target.getAttribute("comment_id");
+      let buttonId = e.target.id;
+      let underscoreIndex = buttonId.indexOf('_')+1;
+      let tripcommentId = buttonId.substring(underscoreIndex);
       deleteConfirm.href = `delete_tripcomment/${tripcommentId}`;
       deleteModal.show();
     });
