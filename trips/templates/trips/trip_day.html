@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="tripdetail-content">
+<div class="tripdetail-content content-background-colour content-container">
     <h1>{{ trip_day.title }}</h1>
     <h2><a href="{% url 'tripdetail' trip_day.trip.pk %}" class="trip-link">
         {{ trip_day.trip.name }}
@@ -25,7 +25,7 @@
                 {% endif %}
             </div>
             <div class="info-div">
-                <div class="border tripday-body">
+                <div class="tripday-body">
                     <p>{{ trip_day.body }}</p>
                 </div>
             </div>
@@ -33,19 +33,15 @@
     </div>
     {% if trip_day.author.user == user %}
     <div class="row">
-        <div class="col-6 text-center">
-            <a href="{% url 'create_trip_day' trip_day.trip.pk %}" class="tripday-link">
+        <div class="col-12 col-md-6 text-center tripday-link">
+            <a href="{% url 'create_trip_day' trip_day.trip.pk %}">
                 Add Another Journal Entry
             </a>
         </div>
-        <div class="col-6 text-center">
-            <!-- Edit trip functionality -->
-            <form action="{% url 'edit_trip_day' trip_day.trip.pk trip_day.pk %}" method="GET">
-                {% csrf_token %}
-                <button type="submit" name="trip_id" value="{{ trip.id }}" class="button float-end">
-                    Edit or Delete Journal Entry
-                </button>
-            </form>
+        <div class="col-12 col-md-6 text-center tripday-link">
+            <a href="{% url 'edit_trip_day' trip_day.trip.pk trip_day.pk %}">
+                Edit or Delete Journal Entry
+            </a>
         </div>
     </div>
     {% endif %}

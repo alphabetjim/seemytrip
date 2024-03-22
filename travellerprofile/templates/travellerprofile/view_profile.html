@@ -4,51 +4,49 @@
 {% url 'edit_traveller' as edit_traveller_url %}
 
 {% block content %}
-<div class="background profile-background">
-    <h1>{{ traveller.firstname }} {{ traveller.lastname}}</h1>
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-6 col-xl-5 image-div">
-            {% if traveller.profile_photo.url == "" %}
-                <img class="profile-image" src="{% static 'images/nobody.jpg' %}"
-                    alt="placeholder image">
-            {% else %}
-            <img class="object-fit-cover profile-image" src=" {{ traveller.profile_photo.url }}"
-                 alt="{{ traveller.firstname }} {{ traveller.lastname}}">
-            {% endif %}
-        </div>
-        <div class="col-12 col-md-6 col-xl-5 info-div">
-            <div class="bio">
-                <h4>About</h4>
-                <p>{{ traveller.bio }}</p>
+<div class="profile-background">
+    <div class="container content-background-colour content-container profile-container">
+        <h1>{{ traveller.firstname }} {{ traveller.lastname}}</h1>
+        <div class="row justify-content-center profile-content">
+            <div class="col-12 col-md-7 col-xl-6 image-div">
+                {% if traveller.profile_photo.url == "" %}
+                    <img class="profile-image" src="{% static 'images/nobody.jpg' %}"
+                        alt="placeholder image">
+                {% else %}
+                <img class="object-fit-cover profile-image" src=" {{ traveller.profile_photo.url }}"
+                    alt="{{ traveller.firstname }} {{ traveller.lastname}}">
+                {% endif %}
             </div>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <h4>Trips</h4>
-        <div class="col-12 col-md-6 col-xl-5 info-div">
-            {% if traveller.trips_planned.count == 0 %}
-            <p><strong>It looks as though you haven't planned any trips yet.</strong></p>
-            {% else %}
-                {% for trip in traveller.trips_planned.all %}
-                    <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
-                        <strong><i class="fa-solid fa-road"></i> {{ trip.name }} in {{ trip.get_region_display }}</strong>
-                    </a>
-                {% endfor %}
-            {% endif %}
+            <div class="col-12 col-md-5 col-xl-5 info-div profile-info">
+                <div class="bio text-center">
+                    <h4>About</h4>
+                    <p>{{ traveller.bio }}</p>
+                </div>
+            </div>
+            <h4>Trips</h4>
+            <div class="col-10 col-md-5 col-xl-5 info-div profile-info profile-trips-planned">
+                {% if traveller.trips_planned.count == 0 %}
+                <p><strong>It looks as though you haven't planned any trips yet.</strong></p>
+                {% else %}
+                    {% for trip in traveller.trips_planned.all %}
+                        <a href="{% url 'tripdetail' trip.pk %}" class="trip-link">
+                            <strong><i class="fa-solid fa-road"></i> {{ trip.name }} in {{ trip.get_region_display }}</strong>
+                        </a>
+                        <p>{{ trip.excerpt }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
         {% if own_profile %}
-            <div class="col-12 col-md-6 col-xl-5 info-div">
-                <a href="{% url 'create_trip' %}"><strong><i class="fa-regular fa-map"></i> Plan a Trip</strong></a>
-            </div>
+            <div class="row justify-content-center">    
+                <div class="col-12 info-div profile-info profile-ud-div">
+                    <a href="{% url 'create_trip' %}" class="profile-ud"><strong><i class="fa-regular fa-map"></i> Plan a Trip</strong></a>
+                </div>
+                <div class="col-12 info-div profile-info profile-ud-div">
+                    <a href="{% url 'edit_traveller' %}" class="profile-ud"><strong>Edit or Delete Profile</strong></a>
+                </div>
+            </div>    
         {% endif %}
     </div>
-    {% if own_profile %}
-        <div class="row">
-            <div class="col-12 info-div">
-                <a href="{% url 'edit_traveller' %}"><strong>Edit or Delete Profile</strong></a>
-            </div>
-        </div>    
-    {% endif %}
 </div>
-
 {% endblock content %}
