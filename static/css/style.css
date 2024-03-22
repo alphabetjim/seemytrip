@@ -132,8 +132,15 @@ img {
 }
 
 .error-div {
-    margin-top: 24vh;
+    margin-top: 15vh;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
+
+.error-div p {
+    color: var(--secondary-standout-color)
+}
+
 
 .error-image {
     background-image: url('/static/images/nico-smit-MWKQ8jsnid0-unsplash.jpg');

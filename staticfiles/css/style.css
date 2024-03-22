@@ -2,6 +2,7 @@
     --background-color: #98838F;
     --standout-color: #dbdada;
     --secondary-color: #229783;
+    --secondary-standout-color: #434141;
 }
 
 /* General Styling */
@@ -31,6 +32,10 @@ h5 {
     color: var(--secondary-color);
 }
 
+p {
+    color: var(--secondary-color);
+}
+
 a {
     color: var(--standout-color);
     font-weight: bold;
@@ -53,12 +58,12 @@ a:hover {
 /* Avoid image distortion */
 img {
     max-width: 100%;
+    max-height: 100%;
 }
 
 /* Navbar */
 .navbar {
     overflow: hidden;
-    /* background-color: #333; */
     position: fixed;
     /* Set the navbar to fixed position */
     top: 0;
@@ -95,16 +100,27 @@ img {
     flex-direction: column;
 }
 
+.auth-container a {
+    color: var(--secondary-standout-color)
+}
+
 .login-div {
     margin-top: 30vh;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .logout-div {
-    margin-top: 40vh;
+    margin-top: 35vh;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
 }
 
 .signup-div {
-    margin-top: 25vh;
+    margin-top: 18vh;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 /* Error page */
@@ -116,8 +132,15 @@ img {
 }
 
 .error-div {
-    margin-top: 24vh;
+    margin-top: 20vh;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
+
+.error-div p {
+    color: var(--secondary-standout-color)
+}
+
 
 .error-image {
     background-image: url('/static/images/nico-smit-MWKQ8jsnid0-unsplash.jpg');
@@ -133,20 +156,34 @@ img {
 
 /* General purpose container for all pages */
 .content-container {
+    margin: auto;
+    /* Positioning */
+    height: 100%;
+}
+
+.formDiv label,
+.formDiv input {
+    color: var(--secondary-standout-color);
+}
+
+.formDiv button {
+    margin-top: 10px;
+}
+
+.form-container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.content-background-colour {
     /* From https://css.glass */
-    /* background: rgba(221, 213, 213, 0.65); */
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(221, 213, 213, 0.65);
+    /* background: rgba(0, 0, 0, 0.45); */
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(221, 213, 213, 0.22);
-
-    margin: auto;
-    color: #78C3FB;
-
-    /* Positioning */
-    height: 100%;
 }
 
 /* Page-specific background classes */
@@ -197,17 +234,8 @@ img {
 }
 
 .home-content-container {
-    /* From https://css.glass */
-    background: rgba(221, 213, 213, 0.65);
-    /* background: rgba(0, 0, 0, 0.45); */
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(221, 213, 213, 0.22);
-
+    /* centre container */
     margin: auto;
-    color: #78C3FB;
 
     /* Positioning */
     height: 60%;
@@ -227,26 +255,43 @@ img {
     /* empty */
 }
 
-.travellerlist-background p {
+.traveller-div p {
     text-align: center;
 }
 
 .triplist-followbuttonrow {
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.traveller-div {
-    /* empty */
+.link-follow,
+.profile-ud {
+    border: 1px groove var(--secondary-standout-color);
+    padding: 10px;
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
 }
 
-.travellerlistitem {
-    border: 1px solid black;
+.traveller-div {
+    padding: auto 10px;
+}
 
+.travellerlistitem,
+.triplistitem {
+    /* border: 1px solid black; */
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+}
+
+.triplistcontent {
+    padding: 10px 0;
 }
 
 .image-div,
-.info-div {
+.info-div,
+.travellerinfo-div {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -256,6 +301,14 @@ img {
 
 .image-div {
     padding: 10px;
+}
+
+.travellerinfo-div div {
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    padding: 10px;
+    width: 80%;
+    margin: 10px auto;
 }
 
 .info-div h5 {
@@ -282,9 +335,36 @@ img {
     margin-right: 40%;
 }
 
-/* Image sizing on detail pages */
+/* Traveller profile page */
+
+.profile-container {
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
 .profile-image {
-    height: 30vw;
+    width: 80%;
+}
+
+.profile-info a,
+.profile-info p {
+    color: #434141;
+}
+
+.bio p {
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
+    padding: 5px 10px;
+}
+
+.profile-trips-planned {
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
+    margin-bottom: 15px;
+    padding: 5px 10px;
+}
+
+.profile-ud-div {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 /* Trip & Traveller list pages */
@@ -307,8 +387,56 @@ img {
 }
 
 /* Trip detail page*/
+.tripdetail-content h4 {
+    margin-top: 5px;
+}
+
 .tripdetail-content .card {
-    background-color: #16e0bd;
+    background-color: var(--secondary-standout-color);
+}
+
+.tripinfo-row {
+    padding-top: 10px;
+}
+
+.tripdetail-ud {
+    padding-top: 10px;
+}
+
+.tripdetail-ud div {
+    margin: 10px auto;
+}
+
+.followbuttondiv {
+    margin: 20px auto;
+}
+
+.card-body,
+.card-body button,
+.card-body p,
+.comments p {
+    color: var(--standout-color)!important;
+}
+
+.comments {
+    border: 1px solid var(--standout-color);
+    margin: 3px 0;
+    border-radius: 1.5rem;
+    padding: 5px 0;
+}
+
+.comments-div {
+    padding: 1rem 1rem;
+}
+
+.standout-col {
+    color: var(--standout-color);
+}
+
+.tripdetail-content p,
+.tripdetail-content a,
+.triplist-followbuttonrow a {
+    color: var(--secondary-standout-color);
 }
 
 .image-detail-div {
@@ -330,6 +458,7 @@ img {
     text-align: center;
     width: 90%;
     margin: auto;
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
 }
 
 .tripdetail-follow {
@@ -338,15 +467,21 @@ img {
 
 .tripjournal {
     display: flex;
-    /* align-self: center; */
+    margin: auto;
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
+}
+
+.journal-heading {
+    margin-top: 10px;
 }
 
 .tripjournal p {
     margin: auto;
+    text-align: center;
 }
 
 .journal-entry {
-    margin: auto;
+    /* margin: 10px auto; */
 }
 
 /* Trip day page */
@@ -356,12 +491,18 @@ img {
 
 .tripday-body {
     max-width: 30%;
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
+    margin: 20px auto;
 }
 
 .tripday-body p {
     text-align: center;
     width: 90%;
     margin: auto;
+}
+
+.tripday-link {
+    margin: 15px auto;
 }
 
 /* Form display pages */
@@ -373,8 +514,6 @@ img {
 }
 
 /* Media Queries */
-
-@media only screen and (min-width: 600px) {}
 
 @media only screen and (min-width: 600px) {
 
