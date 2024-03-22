@@ -343,6 +343,10 @@ img {
 }
 
 /* Trip detail page*/
+.tripdetail-content h4 {
+    margin-top: 5px;
+}
+
 .tripdetail-content .card {
     background-color: var(--secondary-standout-color);
 }
@@ -393,6 +397,7 @@ img {
     text-align: center;
     width: 90%;
     margin: auto;
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
 }
 
 .tripdetail-follow {
@@ -401,6 +406,12 @@ img {
 
 .tripjournal {
     display: flex;
+    margin: auto;
+    box-shadow: 0px 0px 10px var(--secondary-standout-color);
+}
+
+.journal-heading {
+    margin-top: 10px;
 }
 
 .tripjournal p {
@@ -409,7 +420,7 @@ img {
 }
 
 .journal-entry {
-    margin: auto;
+    /* margin: 10px auto; */
 }
 
 /* Trip day page */
