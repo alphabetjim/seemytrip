@@ -3,7 +3,7 @@ See My Trip is a website that aims to inspire would-be roadtrippers or holiday t
 
 Voyagers can post trip journal updates, which appear linked to the relevant trip and allow other site users to see how their trip is going. The live link is here: [See My Trip](https://seemytripcapstone-0e4622862850.herokuapp.com/).
 
-<!-- Mock-up here -->
+![](docs/images/mockup.png)
 
 ## Table of Contents
 
@@ -108,6 +108,12 @@ This encompasses the responsive, user-friendly design of the site as well as fee
 - The [Cabin](https://fonts.google.com/specimen/Cabin) font was chosen for this site, both as a close approximation to the Transport font used on UK road signs and because it is an easily legible, user-friendly font.
 - The colour scheme for this site is shown below, and was selected to provide a welcoming environment with plenty of contrast.
 ![](docs/images/colour_scheme.png)
+- Django messages were used to provide feedback on user CRUD and Follow interaction. Examples are shown below.
+![](docs/testing/feature_screenshots/createConfirm.png)
+![](docs/testing/feature_screenshots/editConfirm.png)
+![](docs/testing/feature_screenshots/deleteConfirm.png)
+![](docs/testing/feature_screenshots/tripUpdateConfirm.png)
+![](docs/testing/feature_screenshots/follow_confirm.png)
 - Bootstrap modals were used to incorporate delete confirmation into the site for all models. An example can be seen below.
 ![](docs/testing/feature_screenshots/profileDelete.png)
 - A standard background class was applied to all pages to further tie them into the site them. This was informed by [css.glass](https://css.glass).
