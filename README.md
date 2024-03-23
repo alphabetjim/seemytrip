@@ -92,7 +92,7 @@ The creation of journal posts to update other users on trip progress, and to hel
 - As a user I can add journal-style posts documenting my trip so that other users can benefit from my experience.
 #### Features:
 - By clicking the 'Add Journal Entry' button on any of their trip pages (see image above), logged-in users can create a journal post to describe a day on that trip. Again, these include an image upload field to allow for memories of the day to be added.
-
+    ![](docs/testing/feature_screenshots/create_journal.png)
 ### User Experience
 This encompasses the responsive, user-friendly design of the site as well as feedback and error handling.
 #### User Stories:
@@ -104,32 +104,80 @@ This encompasses the responsive, user-friendly design of the site as well as fee
 - As a user I can identify the site's browser tab so that I can easily get back to it.
 - As a user I can see an error page that redirects me back to the site if there is a problem so that I can have a positive user experience.
 #### Features:
-- 
+- Bootstrap 5 and Django Template language were used to present the site content in an accessible manner.
+- The [Cabin](https://fonts.google.com/specimen/Cabin) font was chosen for this site, both as a close approximation to the Transport font used on UK road signs and because it is an easily legible, user-friendly font.
+- The colour scheme for this site is shown below, and was selected to provide a welcoming environment with plenty of contrast.
+![](docs/images/colour_scheme.png)
+- Bootstrap modals were used to incorporate delete confirmation into the site for all models. An example can be seen below.
+![](docs/testing/feature_screenshots/profileDelete.png)
+- A standard background class was applied to all pages to further tie them into the site them. This was informed by [css.glass](https://css.glass).
+- A favicon representative of the site aims was chosen and applied. Image credit [Jack Ward]("https://unsplash.com/@jackward?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash") on [Unsplash]("https://unsplash.com/photos/asphalt-road-between-pine-trees-1sddRcdi5Ns?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash")
+- Unauthorised access to views was redirected to other screens within the project, but pages for 404 (page not found) and 500 (server errors) were created and integrated into the site's urls.py. The 404 page can be seen below as an example.
+![](docs/testing/feature_screenshots/custom_404.png)
 
-
-
-
+# Bugs
+Some bugs were found during the development of this project, but all have been fixed. These are tabulated below.
+![](docs/images/bugs.png)
 
 # Wireframes
+Below are the wireframes used in the development of this site.
+- Home page
+![](docs/images/wireframes/home_wireframe.png)
+- Profile page
+![](docs/images/wireframes/profile_wireframe.png)
+- Trip Detail page
+![](docs/images/wireframes/trip_wireframe.png)
+- Trips page
+![](docs/images/wireframes/trips_wireframe.png)
+- Voyagers page
+![](docs/images/wireframes/voyagers_wireframe.png)
+- Journal Entry page
+![](docs/images/wireframes/journal_wireframe.png)
+- The various model create/edit pages
+![](docs/images/wireframes/create_form_wireframe.png)
+- The authorisation pages
+![](docs/images/wireframes/auth_wireframe.png)
 
 # Database Structure
 
-# Surface Design
-
-## Font
-The [Cabin](https://fonts.google.com/specimen/Cabin) font was chosen for this site, both as a close approximation to the Transport font used on UK road signs and because it is an easily legible, user-friendly font.
-
 # Technologies
-
+The following technologies were used on this project:
+- HTML
+- CSS with Bootstrap 5
+- JavaScript
+- Python
+- Django
+- Version Control: GitHub
+- Project Tools: GitHub Projects
+- Wireframing: Balsamiq
+- ElephantSQL Postgres Database
+- Cloudinary for images uploaded through the site
+- GitPod development environment
 # Testing
 [TESTING.md](TESTING.md)
 
 # Deployment
+The site was deployed on Heroku, connected to GitHub for version control. This was carried out using the following steps:
+- Create an account at [Heroku](https://dashboard.heroku.com/).
+- Create a new app, using an appropriate region.
+- Navigate to the settings tab and reveal config vars.
+    - This project needs the following entries:
+    - SECRET_KEY
+    - DATABASE_URL
+    - CLOUDINARY_URL
+    - Set each to the string assigned to them in the project's env.py.
+- Link with GitHub account: [Heroku GitHub Integration](https://devcenter.heroku.com/articles/github-integration)
+- Select the GitHub repository for the project.
+- Select manual deploy from branch.
+- Click deploy.
+
+The app should now be deployed, and can be viewed at the live link at the top of this document.
 
 # Credits
 
 
 ## Similar Sites
+These were reviewed to inform site features and styling.
 [Travellers point](https://www.travellerspoint.com/forum.cfm).
 [Epic Trips](https://www.epic-trips.com/) uses AI to create custom trips.
 [Roadtrippers](https://roadtrippers.com/)
@@ -140,8 +188,3 @@ Error page photo by [Nico Smit]("https://unsplash.com/@nicosmit99?utm_content=cr
   
 Home page background photo by [Z]("https://unsplash.com/@dead____artist?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash") on [Unsplash]("https://unsplash.com/photos/world-map-with-pins-TrhLCn1abMU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash").
     
-
-Image of Gorges de Verdon from https://www.jadescapades.com/moustiers-sainte-marie-and-the-lac-de-sainte-croix/
-North Coast 500 image from https://en.wikipedia.org/wiki/North_Coast_500
-<!-- Home page background from https://www.serre-chevalier.com/en/domaine-altitude/domaine-serre-chevalier-ete -->
-Landscapes used as backgrounds copyright Jazzmin Watson.
