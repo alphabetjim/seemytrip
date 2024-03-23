@@ -5,10 +5,6 @@ Voyagers can post trip journal updates, which appear linked to the relevant trip
 
 ![](docs/images/mockup.png)
 
-## Table of Contents
-
-
-
 # UX Design
 ## Site Goals
 The site aims to inspire users to explore the world and embark on adventures by allowing them to see what others have done or are planning on doing.
@@ -145,7 +141,8 @@ Below are the wireframes used in the development of this site.
 ![](docs/images/wireframes/auth_wireframe.png)
 
 # Database Structure
-
+The entity relationship diagram for this project can be seen below.
+![](docs/images/ERD.png)
 # Technologies
 The following technologies were used on this project:
 - HTML
