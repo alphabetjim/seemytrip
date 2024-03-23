@@ -447,6 +447,11 @@ img {
     height: 35vw;
 }
 
+.trip-comments a,
+.trip-comments h3 {
+    color: var(--standout-color);
+}
+
 .tripdetail-itinerary,
 .tripday-body {
     max-width: 80%;
