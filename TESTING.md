@@ -1,5 +1,121 @@
 ## Functional Testing
+### User Stories
+- User Sign up, login and logout
+    - As a site viewer I can log in so that I can upload my own trip ideas and comment on others.
 
+        Success Criteria
+
+        - Users can register and log in/out.
+        - Access to user profile is only possible for the logged-in user that owns the page.
+
+    - The user can register and log in and out.
+    - Access to a user's profile page is view-only, with only the authorised user having access to update/delete functionality.
+
+- User Profile
+    - As a Site User I can create a user profile so that I can store my preferences and planned trips.
+
+        Success Criteria
+
+        - User can register & input values for profile fields
+        - User can view and edit profile
+        - User can also delete profile
+    
+    - Registered users can create a profile to enable the desired functionality
+        - This profile can be updated and deleted by the user.
+
+- Post a Trip
+    - As a user I can create a post about my trip so that other users can follow it and give recommendations.
+
+        Success Criteria
+
+        - Logged-in user with traveller profile can create a trip and give details of destination, accommodation type, etc.
+        - Logged-in users can click to follow.
+
+    - Once a user has created a traveller profile they are able to create, update or delete a trip.
+    - Other users can click to follow this trip.
+
+- Comment on a Trip
+    - As a user I can comment on other users' trips so that I can suggest destinations or activities.
+
+        Success Criteria
+
+        - Logged-in user can comment on a trip
+        - User can edit & delete comments that they have made
+
+    - The detail page for each trip displays any comments that have been made on it, alongside a form that registered users can use to add comments.
+    - The user who has made a comment is able to edit and delete it, while these controls are hidden for other users.
+    - Comment form is not displayed the user is not logged in.
+
+- Image Upload
+    - As a user I can upload images for my trips and journal posts so that other users can have a richer understanding of the content.
+
+        Success Criteria
+
+        -Users are able to upload photos in a clear and comprehensible manner, either within the trip/post creation form or in a logical way.
+
+    - Users can include a photo when creating their profiles, trips or journal posts. 
+    - Users can update the image used when updating the relevant item.
+                
+- Feedback
+    - As a site user I can receive feedback on the site so that I can be sure of having created/edited/deleted my traveller profile.
+
+        Acceptance Criteria
+
+        - Messages display when user carries out actions that modify anything within the database
+
+    - This functionality is implemented with Django's built-in messages, providing feedback to the user for CRUD and follow/unfollow operations.
+
+- Trip List
+    - As a visitor I can see a page containing all planned trips so that be inspired to join and maybe create my own.
+
+        Acceptance Criteria
+
+        -All trips displayed on an easily accessible page.
+        -Logged-in users can follow trips
+
+    - This functionality is accessed via the trips link in the nav bar, which is always visible.
+    - Each trip is displayed with a follow button which toggles to reflect whether authenticated user is following it.
+    - The follow button is not displayed to the trip's planner.
+
+- Comment Approval
+    - As a site administrator I can approve/hide comments that breach guidelines so that site users have a positive experience.
+
+        Acceptance Criteria
+
+        - Approved field on TripComment model
+        - Conditional display of comments based on the value of this field.
+
+    - Approved field on TripComment model allows administrators to hide comments that are inappropriate.
+    - Conditional display logic implements this on detail page for each trip.
+
+- View all Travellers
+    - As a user who does not have a traveller profile I can view a list of all travellers so that I can be inspired to plan my own trip.
+
+        Success Criteria
+
+        - Registered users who have not yet created a traveller profile (as well as travellers) can view a page containing a summary of each traveller, including any trips that they might have planned.
+
+    - This functionality is available on the Voyagers page, accessible via a nav bar link. 
+    - This page contains links to a profile page for each traveller, including any trips that they have planned.
+
+- Indication of Trip Status
+    - As a viewer I can see whether trips are upcoming, underway or completed so that I can understand what stage they are at.
+
+        Acceptance Criteria
+
+        -Trip list page should display status of trip based on dates entered during trip creation process.
+
+    - Functionality implemented using model properties that are accessed within the template to indicate status.
+
+- Error Pages
+    - As a user I can see an error page that redirects me back to the site if there is a problem so that I can have a positive user experience.
+
+        Acceptance Criteria
+
+        - Create 404 error page that links back to site pages
+        - Any other error pages likewise.
+
+    - 404 and 500 error pages created and integrated into the site.
 
 ## Validator Testing
 
