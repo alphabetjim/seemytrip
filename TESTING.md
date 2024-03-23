@@ -1,3 +1,4 @@
+# Testing
 ## Functional Testing
 Testing of site features has been carried out, and the results documented below.
 ![](docs/images/feature_test.png)
