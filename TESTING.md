@@ -39,4 +39,55 @@ The Lighthouse report showed areas for improvement on SEO and Accessibility. As 
 
 ## Responsiveness
 
-The responsiveness of all pages was tested 
+The responsiveness of all pages was tested to ensure that the website was accessible to users on a range of devices. This was carried out using the following steps:
+
+- Navigate to [See My Trip](https://seemytripcapstone-0e4622862850.herokuapp.com/)
+- Open developer tools (right click -> inspect)
+- Set width adjustment pane to responsive and decrease width to smallest (less than 400px)
+- Set zoom to 50%
+- Drag window to full width and back.
+
+The website should be responsive across all screen sizes, with no images exhibiting any pixelation or distortion. Elements should not overlap, and no horizontal scroll should be present.
+
+The result of this testing was as expected, and can be seen in the GIFs below. The website was also examined in Firefox on a Samsung Galaxy S20+ and performed in line with expectations.
+
+### Results
+Home Screen:
+
+![](docs/testing/gifs/home_responsive_2.gif)
+
+Trips:
+
+![](docs/testing/gifs/triplist_responsive.gif)
+
+Voyagers:
+
+![](docs/testing/gifs/voyager_responsive.gif)
+
+Trip Page:
+
+![](docs/testing/gifs/tripdetail_responsive.gif)
+
+Profile Page:
+
+![](docs/testing/gifs/profile_responsive.gif)
+
+Journal Entry Page:
+
+![](docs/testing/gifs/journal_responsive.gif)
+
+Trip Form:
+
+![](docs/testing/gifs/edittrip_responsive.gif)
+
+Profile Form:
+
+![](docs/testing/gifs/editprofile_responsive.gif)
+
+Journal Entry Form:
+
+![](docs/testing/gifs/createtripday_responsive.gif)
+
+
+## Browser Compatibility
+The website was tested on three different browsers as shown below, and displayed well in each. In Firefox the responsivity was affected slightly on the home screen, with some element overlap between approximately 600-1000px screen width. This is a bug that will be addressed at a later stage.
