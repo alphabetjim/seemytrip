@@ -177,7 +177,11 @@ def create_trip(request):
             trip = trip_form.save(commit=False)
             trip.planner = traveller
             trip.save()
+            messages.add_message(request, messages.SUCCESS, 'Trip created!')
             return HttpResponseRedirect(reverse('owntriplist'))
+        else:
+            messages.add_message(request, messages.ERROR,
+            'Error creating trip')
     else:
         trip_form = TripForm()
     edit = False

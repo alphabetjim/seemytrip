@@ -29,7 +29,7 @@ if (loginStatusString.includes('logged in')){
         if(id == followersParasId){
 
             if (followText.includes(uName)){
-                followButtons[followButtonId].innerText = "Following";
+                followButtons[followButtonId].innerText = "Unfollow";
             }
             followButtonId++;
         }
